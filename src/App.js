@@ -124,6 +124,7 @@ function StatusBadge({ status }) {
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("About");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [typed, setTyped] = useState("");
   const fullText = "Building systems that move, sense, and decide.";
@@ -366,13 +367,27 @@ export default function Portfolio() {
         .nav-link:hover { color: #39ff14 !important; }
         .exp-card:hover { border-left-color: #39ff14 !important; }
         .github-link:hover { color: #39ff14 !important; border-color: #39ff14 !important; }
+
+        @media (max-width: 768px) {
+          .nav-links-desktop { display: none !important; }
+          .nav-mobile-menu { display: flex !important; }
+          .about-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+          .project-header { flex-direction: column !important; align-items: flex-start !important; }
+          .project-highlights { flex-direction: column !important; gap: 0.5rem !important; }
+          .exp-header { flex-direction: column !important; }
+          .contact-section { padding: 60px 6vw !important; }
+          .hero-section { padding: 0 6vw !important; }
+          .section-inner { padding: 60px 6vw !important; }
+          .fact-row { flex-direction: column !important; gap: 4px !important; }
+          .fact-label { min-width: unset !important; }
+        }
       `}</style>
 
       <div style={styles.root}>
         {/* NAV */}
         <nav style={styles.nav}>
           <div style={styles.logo} onClick={() => scrollTo("about")}>SS_</div>
-          <ul style={styles.navLinks}>
+          <ul className="nav-links-desktop" style={styles.navLinks}>
             {NAV_LINKS.map(link => (
               <li key={link}>
                 <span
@@ -385,10 +400,59 @@ export default function Portfolio() {
               </li>
             ))}
           </ul>
+          <button
+            className="nav-mobile-menu"
+            onClick={() => setMobileMenuOpen(o => !o)}
+            style={{
+              display: "none",
+              background: "none",
+              border: "1px solid #333",
+              color: "#39ff14",
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.7rem",
+              padding: "6px 12px",
+              cursor: "pointer",
+              letterSpacing: "0.1em",
+            }}
+          >
+            {mobileMenuOpen ? "CLOSE" : "MENU"}
+          </button>
         </nav>
+        {mobileMenuOpen && (
+          <div style={{
+            position: "fixed",
+            top: "64px",
+            left: 0,
+            right: 0,
+            background: "#0d0d0d",
+            borderBottom: "1px solid #1a1a1a",
+            zIndex: 99,
+            padding: "1.5rem 6vw",
+            display: "flex",
+            flexDirection: "column",
+            gap: "1.25rem",
+          }}>
+            {NAV_LINKS.map(link => (
+              <span
+                key={link}
+                onClick={() => { scrollTo(link); setMobileMenuOpen(false); }}
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "0.85rem",
+                  letterSpacing: "0.1em",
+                  color: activeSection === link ? "#39ff14" : "#888",
+                  cursor: "pointer",
+                  textTransform: "uppercase",
+                }}
+              >
+                {link}
+              </span>
+            ))}
+          </div>
+        )}
 
         {/* HERO */}
-        <section style={styles.hero}>
+        <section className="hero-section" style={styles.hero}>
           <div style={styles.heroGrid} />
           <div style={styles.heroGlow} />
           <div style={{ position: "relative", zIndex: 1 }}>
@@ -423,12 +487,12 @@ export default function Portfolio() {
         <div style={styles.divider} />
 
         {/* ABOUT */}
-        <section id="about" style={styles.section}>
+        <section id="about" className="section-inner" style={styles.section}>
           <FadeIn>
             <div style={styles.sectionLabel}><span style={styles.heroLabelLine} />01 — ABOUT</div>
             <h2 style={styles.sectionTitle}>Who I Am</h2>
           </FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
+          <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
             <FadeIn delay={0.1}>
               <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa", marginBottom: "1.5rem" }}>
                 I build systems that operate in the real world — drones that navigate autonomously, embedded pipelines that process sensor data in real time, and hardware-software integrations that bridge software commands to physical action.
@@ -449,8 +513,8 @@ export default function Portfolio() {
                   { label: "Languages", value: "English (Fluent), German (B1)" },
                   { label: "Focus Areas", value: "Drones · Defense Tech · Robotics" },
                 ].map(item => (
-                  <div key={item.label} style={{ display: "flex", borderBottom: "1px solid #1a1a1a", paddingBottom: "1rem", gap: "1rem" }}>
-                    <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#39ff14", letterSpacing: "0.1em", minWidth: "130px", paddingTop: "2px" }}>
+                  <div key={item.label} className="fact-row" style={{ display: "flex", borderBottom: "1px solid #1a1a1a", paddingBottom: "1rem", gap: "1rem" }}>
+                    <span className="fact-label" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#39ff14", letterSpacing: "0.1em", minWidth: "130px", paddingTop: "2px" }}>
                       {item.label.toUpperCase()}
                     </span>
                     <span style={{ color: "#ccc", fontSize: "0.95rem" }}>{item.value}</span>
@@ -464,7 +528,7 @@ export default function Portfolio() {
         <div style={styles.divider} />
 
         {/* SKILLS */}
-        <section id="skills" style={{ ...styles.section, maxWidth: "1200px" }}>
+        <section id="skills" className="section-inner" style={{ ...styles.section, maxWidth: "1200px" }}>
           <FadeIn>
             <div style={styles.sectionLabel}><span style={styles.heroLabelLine} />02 — SKILLS</div>
             <h2 style={styles.sectionTitle}>Technical Stack</h2>
@@ -497,7 +561,7 @@ export default function Portfolio() {
         <div style={styles.divider} />
 
         {/* PROJECTS */}
-        <section id="projects" style={styles.section}>
+        <section id="projects" className="section-inner" style={styles.section}>
           <FadeIn>
             <div style={styles.sectionLabel}><span style={styles.heroLabelLine} />03 — PROJECTS</div>
             <h2 style={styles.sectionTitle}>What I've Built</h2>
@@ -563,7 +627,7 @@ export default function Portfolio() {
         <div style={styles.divider} />
 
         {/* EXPERIENCE */}
-        <section id="experience" style={styles.section}>
+        <section id="experience" className="section-inner" style={styles.section}>
           <FadeIn>
             <div style={styles.sectionLabel}><span style={styles.heroLabelLine} />04 — EXPERIENCE</div>
             <h2 style={styles.sectionTitle}>Where I've Worked</h2>
@@ -602,7 +666,7 @@ export default function Portfolio() {
         <div style={styles.divider} />
 
         {/* CONTACT */}
-        <section id="contact" style={{ ...styles.section, textAlign: "center", maxWidth: "700px" }}>
+        <section id="contact" className="section-inner contact-section" style={{ ...styles.section, textAlign: "center", maxWidth: "700px" }}>
           <FadeIn>
             <div style={{ ...styles.sectionLabel, justifyContent: "center" }}><span style={styles.heroLabelLine} />05 — CONTACT</div>
             <h2 style={{ ...styles.sectionTitle, textAlign: "center" }}>Let's Talk</h2>
