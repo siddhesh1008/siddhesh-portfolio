@@ -507,7 +507,7 @@ export default function Portfolio() {
                 I build systems that operate in the real world — drones that navigate autonomously, embedded pipelines that process sensor data in real time, and hardware-software integrations that bridge software commands to physical action.
               </p>
               <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa", marginBottom: "1.5rem" }}>
-                Currently finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and working as a Mechatronic Engineer at Better Devices — building Python signal processing pipelines and embedded systems for IoT applications.
+                Finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and working as a Mechatronic Engineer at Better Devices — building Python signal processing pipelines and embedded systems for IoT applications.
               </p>
               <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa" }}>
                 I target roles in robotics, autonomous drone development, and defense technology — environments where the engineering actually needs to work.
