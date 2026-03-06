@@ -30,16 +30,7 @@ const PROJECTS = [
     highlights: ["Natural language + vision input", "Relay module hardware control", "Sensor-to-action automation pipeline"],
     github: "https://github.com/siddhesh1008",
   },
-  {
-    id: "depth",
-    title: "Adaptive Projector with Depth Sensing",
-    status: "IN PROGRESS",
-    tags: ["Python", "OpenNI2", "Orbbec Astra Pro", "Depth Sensing"],
-    description:
-      "Building an adaptive projection system using an Orbbec Astra Pro depth camera. Working with depth sensing hardware, camera calibration, and spatial data processing pipelines for environment-aware projection.",
-    highlights: ["Real-time depth data capture", "Camera calibration pipeline", "Environment-aware projection"],
-    github: "https://github.com/siddhesh1008",
-  },
+
 ];
 
 const EXPERIENCE = [
