@@ -457,7 +457,6 @@ export default function Portfolio() {
           <div style={styles.heroGlow} />
           <div style={{ position: "relative", zIndex: 1 }}>
             <div style={styles.heroLabel}>
-              <span style={styles.heroLabelLine} />
               ROBOTICS ENGINEER — BERLIN
             </div>
             <h1 style={styles.heroName}>Siddhesh<br />Salunkhe</h1>
@@ -489,7 +488,7 @@ export default function Portfolio() {
         {/* ABOUT */}
         <section id="about" className="section-inner" style={styles.section}>
           <FadeIn>
-            <div style={styles.sectionLabel}><span style={styles.heroLabelLine} />01 — ABOUT</div>
+            <div style={styles.sectionLabel}>01 — ABOUT</div>
             <h2 style={styles.sectionTitle}>Who I Am</h2>
           </FadeIn>
           <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
@@ -530,7 +529,7 @@ export default function Portfolio() {
         {/* SKILLS */}
         <section id="skills" className="section-inner" style={{ ...styles.section, maxWidth: "1200px" }}>
           <FadeIn>
-            <div style={styles.sectionLabel}><span style={styles.heroLabelLine} />02 — SKILLS</div>
+            <div style={styles.sectionLabel}>02 — SKILLS</div>
             <h2 style={styles.sectionTitle}>Technical Stack</h2>
           </FadeIn>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
@@ -563,7 +562,7 @@ export default function Portfolio() {
         {/* PROJECTS */}
         <section id="projects" className="section-inner" style={styles.section}>
           <FadeIn>
-            <div style={styles.sectionLabel}><span style={styles.heroLabelLine} />03 — PROJECTS</div>
+            <div style={styles.sectionLabel}>03 — PROJECTS</div>
             <h2 style={styles.sectionTitle}>What I've Built</h2>
           </FadeIn>
           <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
@@ -629,7 +628,7 @@ export default function Portfolio() {
         {/* EXPERIENCE */}
         <section id="experience" className="section-inner" style={styles.section}>
           <FadeIn>
-            <div style={styles.sectionLabel}><span style={styles.heroLabelLine} />04 — EXPERIENCE</div>
+            <div style={styles.sectionLabel}>04 — EXPERIENCE</div>
             <h2 style={styles.sectionTitle}>Where I've Worked</h2>
           </FadeIn>
           <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
@@ -668,7 +667,7 @@ export default function Portfolio() {
         {/* CONTACT */}
         <section id="contact" className="section-inner contact-section" style={{ ...styles.section, textAlign: "center", maxWidth: "700px" }}>
           <FadeIn>
-            <div style={{ ...styles.sectionLabel, justifyContent: "center" }}><span style={styles.heroLabelLine} />05 — CONTACT</div>
+            <div style={{ ...styles.sectionLabel, justifyContent: "center" }}>05 — CONTACT</div>
             <h2 style={{ ...styles.sectionTitle, textAlign: "center" }}>Let's Talk</h2>
             <p style={{ color: "#888", lineHeight: 1.8, marginBottom: "3rem", fontSize: "1rem" }}>
               Open to robotics, drone engineering, and defense tech roles in Germany. Reach out directly — no forms, no friction.
