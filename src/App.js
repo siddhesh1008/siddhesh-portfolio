@@ -510,7 +510,7 @@ export default function Portfolio() {
                 Finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and working as a Mechatronic Engineer at Better Devices — building Python signal processing pipelines and embedded systems for IoT applications.
               </p>
               <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa" }}>
-                I target roles in robotics, autonomous drone development, and defense technology — environments where the engineering actually needs to work.
+                I target roles in robotics, industrial automation, autonomous drone development, and defense technology — environments where the engineering actually needs to work.
               </p>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -520,7 +520,7 @@ export default function Portfolio() {
                   { label: "Education", value: "M.Eng — SRH Berlin (Mar 2026)" },
                   { label: "Current Role", value: "Mechatronic Engineer @ Better Devices" },
                   { label: "Languages", value: "English (Fluent), German (B1)" },
-                  { label: "Focus Areas", value: "Drones · Defense Tech · Robotics" },
+                  { label: "Focus Areas", value: "Drones · Robotics · Defense Tech" },
                 ].map(item => (
                   <div key={item.label} className="fact-row" style={{ display: "flex", borderBottom: "1px solid #1a1a1a", paddingBottom: "1rem", gap: "1rem" }}>
                     <span className="fact-label" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#39ff14", letterSpacing: "0.1em", minWidth: "130px", paddingTop: "2px" }}>
