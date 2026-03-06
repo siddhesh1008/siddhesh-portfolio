@@ -18,7 +18,6 @@ const PROJECTS = [
     description:
       "Designed and built a fully autonomous drone from scratch. Implemented GPS waypoint navigation, return-to-launch, and altitude hold without human input. Built a real-time telemetry pipeline from sensor data through to autonomous decision-making.",
     highlights: ["GPS waypoint navigation", "Real-time telemetry pipeline", "Industrial use: mapping, inspection, delivery"],
-    github: "https://github.com/siddhesh1008",
   },
   {
     id: "ai-assistant",
@@ -29,6 +28,15 @@ const PROJECTS = [
       "Built an AI assistant with computer vision and speech recognition for natural language interaction. Designed a hardware control pipeline connecting software commands to physical relay modules via Arduino — autonomously controlling room lighting and appliances.",
     highlights: ["Natural language + vision input", "Relay module hardware control", "Sensor-to-action automation pipeline"],
     github: "https://github.com/siddhesh1008",
+  },
+  {
+    id: "jet",
+    title: "90mm  Jet Replica with ArduPilot",
+    status: "COMPLETE",
+    tags: ["ArduPilot", "ELRS", "FPV", "Head Tracking", "MAVLink", "Python"],
+    description:
+      "Built a 90mm fighter jet replica with a fully integrated ArduPilot flight stack. Features autonomous return-to-home, GPS waypoint navigation, and real-time telemetry. Equipped with a head-tracking FPV setup that provides a real-life simulation perspective — designed for pilot training use cases. Hardware includes retractable landing gear and an ELRS long-range control link.",
+    highlights: ["Head-tracking FPV for pilot training", "Retractable landing gear", "Autonomous RTH & waypoint nav", "ELRS long-range link"],
   },
 
 ];
@@ -42,18 +50,20 @@ const EXPERIENCE = [
     points: [
       "Python scripts for electronic signal processing and embedded data pipelines",
       "Hardware-software integration, sensor interfacing, real-time data handling",
-      "PCB design fundamentals for IoT debugging and testing",
+      "IoT debugging and testing",
       "CAD design for hardware prototyping and system enclosures",
+      "Computer vision for new product development and feature implementation"
     ],
   },
   {
-    role: "Cyber Security Senior Analyst",
-    company: "Capgemini",
+    role: "Drone Systems Engineer",
+    company: "Whoopmasters India",
     location: "Mumbai, India",
-    period: "Sep 2022 – Feb 2024",
+    period: "Aug 2020 – Feb 2024",
     points: [
-      "Automation scripts to streamline identity and access management workflows",
-      "Technical mentorship to junior engineers on structured troubleshooting",
+      "Built and tested drones for payload in the field, mapping, cinematic, agriculture, rescue, and defense prototype missions",
+      "Full build cycle: frame assembly, FC tuning, payload integration, and field testing",
+      "Configured ArduPilot flight stacks for diverse mission profiles and payload requirements"
     ],
   },
 ];
@@ -497,7 +507,7 @@ export default function Portfolio() {
                 I build systems that operate in the real world — drones that navigate autonomously, embedded pipelines that process sensor data in real time, and hardware-software integrations that bridge software commands to physical action.
               </p>
               <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa", marginBottom: "1.5rem" }}>
-                Currently finishing my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and working as a Mechatronic Engineer at Better Devices — building Python signal processing pipelines and embedded systems for IoT applications.
+                Currently finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and working as a Mechatronic Engineer at Better Devices — building Python signal processing pipelines and embedded systems for IoT applications.
               </p>
               <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa" }}>
                 I target roles in robotics, autonomous drone development, and defense technology — environments where the engineering actually needs to work.
