@@ -74,7 +74,7 @@ function useInView(threshold = 0.15) {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold });
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
-  }, []);
+  }, [threshold]);
   return [ref, visible];
 }
 
@@ -133,7 +133,7 @@ function StatusBadge({ status }) {
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("About");
-  const [menuOpen, setMenuOpen] = useState(false);
+
   const [typed, setTyped] = useState("");
   const fullText = "Building systems that move, sense, and decide.";
 
@@ -164,7 +164,6 @@ export default function Portfolio() {
 
   const scrollTo = (id) => {
     document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
-    setMenuOpen(false);
   };
 
   const styles = {
@@ -407,7 +406,7 @@ export default function Portfolio() {
               ROBOTICS ENGINEER — BERLIN
             </div>
             <h1 style={styles.heroName}>Siddhesh<br />Salunkhe</h1>
-            <div style={styles.heroTitle}>// Autonomous Systems & Embedded Engineering</div>
+            <div style={styles.heroTitle}>{String.fromCharCode(47,47)} Autonomous Systems & Embedded Engineering</div>
             <p style={styles.heroTagline}>
               {typed}<span style={styles.cursor} />
             </p>
