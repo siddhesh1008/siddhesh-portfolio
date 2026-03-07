@@ -98,7 +98,7 @@ const PROJECTS = {
       tags: ["ArduPilot", "ELRS", "FPV", "Head Tracking", "MAVLink", "Python"],
       description: "Built a 90mm fighter jet replica with a fully integrated ArduPilot flight stack. Features autonomous return-to-home, GPS waypoint navigation, and real-time telemetry. Equipped with a head-tracking FPV setup that provides a real-life simulation perspective — designed for pilot training use cases. Hardware includes retractable landing gear and an ELRS long-range control link.",
       highlights: ["Head-tracking FPV for pilot training", "Retractable landing gear", "Autonomous RTH & waypoint nav", "ELRS long-range link"],
-      youtube: "https://www.youtube.com/embed/nUOmQd3p6PQ",
+      youtube: "https://www.youtube.com/embed/nUOmQd3p6PQ?autoplay=1&mute=1",
     },
   ],
   de: [
@@ -126,7 +126,7 @@ const PROJECTS = {
       tags: ["ArduPilot", "ELRS", "FPV", "Head Tracking", "MAVLink", "Python"],
       description: "Bau einer 90mm Kampfjet-Replik mit vollständig integriertem ArduPilot-Flugstack. Funktionen: autonomes Return-to-Home, GPS-Wegpunktnavigation und Echtzeit-Telemetrie. Ausgestattet mit einem Head-Tracking-FPV-System für eine realitätsnahe Simulationsperspektive — konzipiert für Pilotenausbildung. Hardware umfasst einfahrbare Fahrwerke und einen ELRS-Langstrecken-Steuerlink.",
       highlights: ["Head-Tracking-FPV für Pilotentraining", "Einfahrbares Fahrwerk", "Autonomes RTH & Wegpunktnavigation", "ELRS-Langstreckenlink"],
-      youtube: "https://www.youtube.com/embed/nUOmQd3p6PQ",
+      youtube: "https://www.youtube.com/embed/nUOmQd3p6PQ?autoplay=1&mute=1",
     },
   ],
 };
