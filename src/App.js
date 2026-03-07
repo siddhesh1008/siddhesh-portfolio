@@ -1,6 +1,69 @@
 import { useState, useEffect, useRef } from "react";
 
-const NAV_LINKS = ["About", "Skills", "Projects", "Experience", "Contact"];
+const TRANSLATIONS = {
+  en: {
+    navLinks: ["About", "Skills", "Projects", "Experience", "Contact"],
+    heroLabel: "ROBOTICS ENGINEER — BERLIN",
+    heroTitle: "// Autonomous Systems & Embedded Engineering",
+    heroTagline: "Building systems that move, sense, and decide.",
+    heroCtas: { projects: "View Projects", contact: "Get In Touch" },
+    about: {
+      sectionLabel: "01 — ABOUT",
+      sectionTitle: "Who I Am",
+      bio1: "I build systems that operate in the real world — drones that navigate autonomously, embedded pipelines that process sensor data in real time, and hardware-software integrations that bridge software commands to physical action.",
+      bio2: "Finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and working as a Mechatronic Engineer at Better Devices — building Python signal processing pipelines and embedded systems for IoT applications.",
+      bio3: "I target roles in robotics, industrial automation, autonomous drone development, and defense technology — environments where the engineering actually needs to work.",
+      facts: [
+        { label: "Location", value: "Berlin, Germany" },
+        { label: "Education", value: "M.Eng — SRH Berlin (Mar 2026)" },
+        { label: "Current Role", value: "Mechatronic Engineer @ Better Devices" },
+        { label: "Languages", value: "English (Fluent), German (B1)" },
+        { label: "Focus Areas", value: "Drones · Robotics · Defense Tech" },
+      ],
+    },
+    skills: { sectionLabel: "02 — SKILLS", sectionTitle: "Technical Stack" },
+    projects: { sectionLabel: "03 — PROJECTS", sectionTitle: "What I've Built" },
+    experience: { sectionLabel: "04 — EXPERIENCE", sectionTitle: "Where I've Worked" },
+    contact: {
+      sectionLabel: "05 — CONTACT",
+      sectionTitle: "Let's Talk",
+      bio: "Open to robotics, drone engineering, and defense tech roles in Germany. Reach out directly — no forms, no friction.",
+      email: "Email Me",
+    },
+    footer: "BERLIN, GERMANY",
+  },
+  de: {
+    navLinks: ["Über mich", "Fähigkeiten", "Projekte", "Erfahrung", "Kontakt"],
+    heroLabel: "ROBOTIK-INGENIEUR — BERLIN",
+    heroTitle: "// Autonome Systeme & Embedded Engineering",
+    heroTagline: "Systeme bauen, die sich bewegen, wahrnehmen und entscheiden.",
+    heroCtas: { projects: "Projekte ansehen", contact: "Kontakt aufnehmen" },
+    about: {
+      sectionLabel: "01 — ÜBER MICH",
+      sectionTitle: "Wer ich bin",
+      bio1: "Ich entwickle Systeme, die in der realen Welt funktionieren — autonom navigierende Drohnen, eingebettete Pipelines zur Echtzeit-Sensordatenverarbeitung und Hardware-Software-Integrationen, die Softwarebefehle in physische Aktionen übersetzen.",
+      bio2: "Ich habe meinen Master in Sustainable Technology Management (Schwerpunkt Industrie 4.0) an der SRH Berlin abgeschlossen und arbeite als Mechatronik-Ingenieur bei Better Devices — dort entwickle ich Python-Signalverarbeitungspipelines und Embedded-Systeme für IoT-Anwendungen.",
+      bio3: "Ich suche Stellen in der Robotik, industriellen Automatisierung, autonomen Drohnenentwicklung und Verteidigungstechnologie — Umgebungen, in denen Engineering wirklich funktionieren muss.",
+      facts: [
+        { label: "Standort", value: "Berlin, Deutschland" },
+        { label: "Ausbildung", value: "M.Eng — SRH Berlin (März 2026)" },
+        { label: "Aktuelle Stelle", value: "Mechatronik-Ingenieur @ Better Devices" },
+        { label: "Sprachen", value: "Englisch (fließend), Deutsch (B1)" },
+        { label: "Schwerpunkte", value: "Drohnen · Robotik · Verteidigungstechnik" },
+      ],
+    },
+    skills: { sectionLabel: "02 — FÄHIGKEITEN", sectionTitle: "Technisches Stack" },
+    projects: { sectionLabel: "03 — PROJEKTE", sectionTitle: "Was ich gebaut habe" },
+    experience: { sectionLabel: "04 — ERFAHRUNG", sectionTitle: "Wo ich gearbeitet habe" },
+    contact: {
+      sectionLabel: "05 — KONTAKT",
+      sectionTitle: "Lass uns reden",
+      bio: "Offen für Stellen in der Robotik, Drohnentechnik und Verteidigungstechnologie in Deutschland. Direkt kontaktieren — kein Formular, kein Aufwand.",
+      email: "E-Mail senden",
+    },
+    footer: "BERLIN, DEUTSCHLAND",
+  },
+};
 
 const SKILLS = {
   "Flight & Autonomy": ["ArduPilot", "MAVLink", "Pixhawk / CubePilot", "GPS Waypoint Nav", "Autonomous Flight Behaviours"],
@@ -9,64 +72,117 @@ const SKILLS = {
   "Tools & Methods": ["Linux", "Git", "CAD Modelling", "Agile", "ROS2 Fundamentals", "Data Pipelines"],
 };
 
-const PROJECTS = [
-  {
-    id: "drone",
-    title: "Autonomous Drone Platform",
-    status: "COMPLETE",
-    tags: ["ArduPilot", "MAVLink", "Pixhawk", "Raspberry Pi", "Python"],
-    description:
-      "Designed and built a fully autonomous drone from scratch. Implemented GPS waypoint navigation, return-to-launch, and altitude hold without human input. Built a real-time telemetry pipeline from sensor data through to autonomous decision-making.",
-    highlights: ["GPS waypoint navigation", "Real-time telemetry pipeline", "Industrial use: mapping, inspection, delivery"],
-  },
-  {
-    id: "ai-assistant",
-    title: "AI Assistant with Computer Vision",
-    status: "COMPLETE",
-    tags: ["Python", "OpenCV", "OpenAI API", "Arduino", "Speech Recognition"],
-    description:
-      "Built an AI assistant with computer vision and speech recognition for natural language interaction. Designed a hardware control pipeline connecting software commands to physical relay modules via Arduino — autonomously controlling room lighting and appliances.",
-    highlights: ["Natural language + vision input", "Relay module hardware control", "Sensor-to-action automation pipeline"],
-    github: "https://github.com/siddhesh1008",
-  },
-  {
-    id: "jet",
-    title: "90mm  Jet Replica with ArduPilot",
-    status: "COMPLETE",
-    tags: ["ArduPilot", "ELRS", "FPV", "Head Tracking", "MAVLink", "Python"],
-    description:
-      "Built a 90mm fighter jet replica with a fully integrated ArduPilot flight stack. Features autonomous return-to-home, GPS waypoint navigation, and real-time telemetry. Equipped with a head-tracking FPV setup that provides a real-life simulation perspective — designed for pilot training use cases. Hardware includes retractable landing gear and an ELRS long-range control link.",
-    highlights: ["Head-tracking FPV for pilot training", "Retractable landing gear", "Autonomous RTH & waypoint nav", "ELRS long-range link"],
-  },
+const PROJECTS = {
+  en: [
+    {
+      id: "drone",
+      title: "Autonomous Drone Platform",
+      status: "COMPLETE",
+      tags: ["ArduPilot", "MAVLink", "Pixhawk", "Raspberry Pi", "Python"],
+      description: "Designed and built a fully autonomous drone from scratch. Implemented GPS waypoint navigation, return-to-launch, and altitude hold without human input. Built a real-time telemetry pipeline from sensor data through to autonomous decision-making.",
+      highlights: ["GPS waypoint navigation", "Real-time telemetry pipeline", "Industrial use: mapping, inspection, delivery"],
+    },
+    {
+      id: "ai-assistant",
+      title: "AI Assistant with Computer Vision",
+      status: "COMPLETE",
+      tags: ["Python", "OpenCV", "OpenAI API", "Arduino", "Speech Recognition"],
+      description: "Built an AI assistant with computer vision and speech recognition for natural language interaction. Designed a hardware control pipeline connecting software commands to physical relay modules via Arduino — autonomously controlling room lighting and appliances.",
+      highlights: ["Natural language + vision input", "Relay module hardware control", "Sensor-to-action automation pipeline"],
+      github: "https://github.com/siddhesh1008",
+    },
+    {
+      id: "jet",
+      title: "90mm Jet Replica with ArduPilot",
+      status: "COMPLETE",
+      tags: ["ArduPilot", "ELRS", "FPV", "Head Tracking", "MAVLink", "Python"],
+      description: "Built a 90mm fighter jet replica with a fully integrated ArduPilot flight stack. Features autonomous return-to-home, GPS waypoint navigation, and real-time telemetry. Equipped with a head-tracking FPV setup that provides a real-life simulation perspective — designed for pilot training use cases. Hardware includes retractable landing gear and an ELRS long-range control link.",
+      highlights: ["Head-tracking FPV for pilot training", "Retractable landing gear", "Autonomous RTH & waypoint nav", "ELRS long-range link"],
+    },
+  ],
+  de: [
+    {
+      id: "drone",
+      title: "Autonome Drohnenplattform",
+      status: "ABGESCHLOSSEN",
+      tags: ["ArduPilot", "MAVLink", "Pixhawk", "Raspberry Pi", "Python"],
+      description: "Entwurf und Bau einer vollautonomen Drohne von Grund auf. Implementierung von GPS-Wegpunktnavigation, Return-to-Launch und Höhenhaltung ohne menschliche Eingabe. Aufbau einer Echtzeit-Telemetriepipeline von Sensordaten bis zur autonomen Entscheidungsfindung.",
+      highlights: ["GPS-Wegpunktnavigation", "Echtzeit-Telemetriepipeline", "Industriell: Kartierung, Inspektion, Lieferung"],
+    },
+    {
+      id: "ai-assistant",
+      title: "KI-Assistent mit Computer Vision",
+      status: "ABGESCHLOSSEN",
+      tags: ["Python", "OpenCV", "OpenAI API", "Arduino", "Spracherkennung"],
+      description: "Entwicklung eines KI-Assistenten mit Computer Vision und Spracherkennung für natürliche Sprachinteraktion. Entwurf einer Hardware-Steuerungspipeline, die Softwarebefehle über Arduino mit physischen Relaismodulen verbindet — zur autonomen Steuerung von Beleuchtung und Geräten.",
+      highlights: ["Sprach- und Bildeingabe", "Relaismodul-Hardwaresteuerung", "Sensor-zu-Aktion-Pipeline"],
+      github: "https://github.com/siddhesh1008",
+    },
+    {
+      id: "jet",
+      title: "90mm Kampfjet-Replik mit ArduPilot",
+      status: "ABGESCHLOSSEN",
+      tags: ["ArduPilot", "ELRS", "FPV", "Head Tracking", "MAVLink", "Python"],
+      description: "Bau einer 90mm Kampfjet-Replik mit vollständig integriertem ArduPilot-Flugstack. Funktionen: autonomes Return-to-Home, GPS-Wegpunktnavigation und Echtzeit-Telemetrie. Ausgestattet mit einem Head-Tracking-FPV-System für eine realitätsnahe Simulationsperspektive — konzipiert für Pilotenausbildung. Hardware umfasst einfahrbare Fahrwerke und einen ELRS-Langstrecken-Steuerlink.",
+      highlights: ["Head-Tracking-FPV für Pilotentraining", "Einfahrbares Fahrwerk", "Autonomes RTH & Wegpunktnavigation", "ELRS-Langstreckenlink"],
+    },
+  ],
+};
 
-];
-
-const EXPERIENCE = [
-  {
-    role: "Mechatronic Engineer — Working Student",
-    company: "Better Devices",
-    location: "Berlin, Germany",
-    period: "Sep 2024 – Present",
-    points: [
-      "Python scripts for electronic signal processing and embedded data pipelines",
-      "Hardware-software integration, sensor interfacing, real-time data handling",
-      "IoT debugging and testing",
-      "CAD design for hardware prototyping and system enclosures",
-      "Computer vision for new product development and feature implementation"
-    ],
-  },
-  {
-    role: "Drone Systems Engineer",
-    company: "Whoopmasters India",
-    location: "Mumbai, India",
-    period: "Aug 2020 – Feb 2024",
-    points: [
-      "Built and tested drones for payload in the field, mapping, cinematic, agriculture, rescue, and defense prototype missions",
-      "Full build cycle: frame assembly, FC tuning, payload integration, and field testing",
-      "Configured ArduPilot flight stacks for diverse mission profiles and payload requirements"
-    ],
-  },
-];
+const EXPERIENCE = {
+  en: [
+    {
+      role: "Mechatronic Engineer — Working Student",
+      company: "Better Devices",
+      location: "Berlin, Germany",
+      period: "Sep 2024 – Present",
+      points: [
+        "Python scripts for electronic signal processing and embedded data pipelines",
+        "Hardware-software integration, sensor interfacing, real-time data handling",
+        "IoT debugging and testing",
+        "CAD design for hardware prototyping and system enclosures",
+        "Computer vision for new product development and feature implementation",
+      ],
+    },
+    {
+      role: "Drone Systems Engineer",
+      company: "Whoopmasters India",
+      location: "Mumbai, India",
+      period: "Aug 2020 – Feb 2024",
+      points: [
+        "Built and tested drones for payload in the field, mapping, cinematic, agriculture, rescue, and defense prototype missions",
+        "Full build cycle: frame assembly, FC tuning, payload integration, and field testing",
+        "Configured ArduPilot flight stacks for diverse mission profiles and payload requirements",
+      ],
+    },
+  ],
+  de: [
+    {
+      role: "Mechatronik-Ingenieur — Werkstudent",
+      company: "Better Devices",
+      location: "Berlin, Deutschland",
+      period: "Sep 2024 – heute",
+      points: [
+        "Python-Skripte für elektronische Signalverarbeitung und eingebettete Datenpipelines",
+        "Hardware-Software-Integration, Sensoranbindung, Echtzeit-Datenverarbeitung",
+        "IoT-Debugging und -Testing",
+        "CAD-Design für Hardware-Prototyping und Systemgehäuse",
+        "Computer Vision für neue Produktentwicklung und Funktionsimplementierung",
+      ],
+    },
+    {
+      role: "Drohnensystemingenieur",
+      company: "Whoopmasters India",
+      location: "Mumbai, Indien",
+      period: "Aug 2020 – Feb 2024",
+      points: [
+        "Bau und Test von Drohnen für Nutzlast, Kartierung, Kino, Landwirtschaft, Rettung und Verteidigungsprototypen",
+        "Vollständiger Bauzyklus: Rahmenmontage, FC-Abstimmung, Nutzlastintegration und Feldtests",
+        "Konfiguration von ArduPilot-Flugstacks für verschiedene Missionprofile und Nutzlastanforderungen",
+      ],
+    },
+  ],
+};
 
 function useInView(threshold = 0.15) {
   const ref = useRef(null);
@@ -82,15 +198,7 @@ function useInView(threshold = 0.15) {
 function FadeIn({ children, delay = 0, className = "" }) {
   const [ref, visible] = useInView();
   return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(28px)",
-        transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
-      }}
-    >
+    <div ref={ref} className={className} style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(28px)", transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s` }}>
       {children}
     </div>
   );
@@ -98,260 +206,94 @@ function FadeIn({ children, delay = 0, className = "" }) {
 
 function Tag({ label, accent = false }) {
   return (
-    <span style={{
-      fontFamily: "'Space Mono', monospace",
-      fontSize: "0.7rem",
-      letterSpacing: "0.05em",
-      padding: "3px 10px",
-      borderRadius: "2px",
-      border: accent ? "1px solid #39ff14" : "1px solid #333",
-      color: accent ? "#39ff14" : "#888",
-      background: accent ? "rgba(57,255,20,0.06)" : "transparent",
-      whiteSpace: "nowrap",
-    }}>
+    <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.05em", padding: "3px 10px", borderRadius: "2px", border: accent ? "1px solid #39ff14" : "1px solid #333", color: accent ? "#39ff14" : "#888", background: accent ? "rgba(57,255,20,0.06)" : "transparent", whiteSpace: "nowrap" }}>
       {label}
     </span>
   );
 }
 
 function StatusBadge({ status }) {
-  const isComplete = status === "COMPLETE";
+  const isComplete = status === "COMPLETE" || status === "ABGESCHLOSSEN";
   return (
-    <span style={{
-      fontFamily: "'Space Mono', monospace",
-      fontSize: "0.65rem",
-      letterSpacing: "0.12em",
-      padding: "2px 8px",
-      borderRadius: "2px",
-      border: `1px solid ${isComplete ? "#39ff14" : "#f59e0b"}`,
-      color: isComplete ? "#39ff14" : "#f59e0b",
-      background: isComplete ? "rgba(57,255,20,0.06)" : "rgba(245,158,11,0.08)",
-    }}>
+    <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.12em", padding: "2px 8px", borderRadius: "2px", border: `1px solid ${isComplete ? "#39ff14" : "#f59e0b"}`, color: isComplete ? "#39ff14" : "#f59e0b", background: isComplete ? "rgba(57,255,20,0.06)" : "rgba(245,158,11,0.08)" }}>
       {status}
     </span>
   );
 }
 
+function LangToggle({ lang, setLang }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+      <button onClick={() => setLang("en")} title="English" style={{ background: "none", border: lang === "en" ? "1px solid #39ff14" : "1px solid #2a2a2a", borderRadius: "3px", padding: "3px 7px", cursor: "pointer", fontSize: "1rem", opacity: lang === "en" ? 1 : 0.4, transition: "all 0.2s" }}>
+        EN
+      </button>
+      <button onClick={() => setLang("de")} title="Deutsch" style={{ background: "none", border: lang === "de" ? "1px solid #39ff14" : "1px solid #2a2a2a", borderRadius: "3px", padding: "3px 7px", cursor: "pointer", fontSize: "1rem", opacity: lang === "de" ? 1 : 0.4, transition: "all 0.2s" }}>
+        DE
+      </button>
+    </div>
+  );
+}
+
 export default function Portfolio() {
+  const [lang, setLang] = useState("en");
   const [activeSection, setActiveSection] = useState("About");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const [typed, setTyped] = useState("");
-  const fullText = "Building systems that move, sense, and decide.";
+  const t = TRANSLATIONS[lang];
 
   useEffect(() => {
+    setTyped("");
     let i = 0;
     const interval = setInterval(() => {
-      setTyped(fullText.slice(0, i + 1));
+      setTyped(t.heroTagline.slice(0, i + 1));
       i++;
-      if (i >= fullText.length) clearInterval(interval);
+      if (i >= t.heroTagline.length) clearInterval(interval);
     }, 38);
     return () => clearInterval(interval);
-  }, []);
+  }, [lang, t.heroTagline]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = NAV_LINKS.map(l => document.getElementById(l.toLowerCase()));
+      const ids = t.navLinks.map(l => l.toLowerCase().replace(/\s/g, "-"));
       const scrollY = window.scrollY + 100;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        if (sections[i] && scrollY >= sections[i].offsetTop) {
-          setActiveSection(NAV_LINKS[i]);
-          break;
-        }
+      for (let i = ids.length - 1; i >= 0; i--) {
+        const el = document.getElementById(ids[i]);
+        if (el && scrollY >= el.offsetTop) { setActiveSection(t.navLinks[i]); break; }
       }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [t.navLinks]);
 
-  const scrollTo = (id) => {
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (label) => {
+    const id = label.toLowerCase().replace(/\s/g, "-");
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileMenuOpen(false);
   };
 
+  const sectionIds = t.navLinks.map(l => l.toLowerCase().replace(/\s/g, "-"));
+
   const styles = {
-    root: {
-      background: "#0a0a0a",
-      color: "#d4d4d4",
-      fontFamily: "'DM Sans', sans-serif",
-      minHeight: "100vh",
-      overflowX: "hidden",
-    },
-    nav: {
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 100,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      padding: "0 5vw",
-      height: "64px",
-      background: "rgba(10,10,10,0.92)",
-      backdropFilter: "blur(12px)",
-      borderBottom: "1px solid #1a1a1a",
-    },
-    logo: {
-      fontFamily: "'Space Mono', monospace",
-      fontSize: "0.9rem",
-      color: "#39ff14",
-      letterSpacing: "0.1em",
-      cursor: "pointer",
-    },
-    navLinks: {
-      display: "flex",
-      gap: "2rem",
-      listStyle: "none",
-      margin: 0,
-      padding: 0,
-    },
-    navLink: (active) => ({
-      fontFamily: "'Space Mono', monospace",
-      fontSize: "0.75rem",
-      letterSpacing: "0.08em",
-      color: active ? "#39ff14" : "#666",
-      cursor: "pointer",
-      transition: "color 0.2s",
-      textTransform: "uppercase",
-      borderBottom: active ? "1px solid #39ff14" : "1px solid transparent",
-      paddingBottom: "2px",
-    }),
-    hero: {
-      minHeight: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      padding: "0 8vw",
-      position: "relative",
-      overflow: "hidden",
-    },
-    heroGrid: {
-      position: "absolute",
-      inset: 0,
-      backgroundImage: "linear-gradient(rgba(57,255,20,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.03) 1px, transparent 1px)",
-      backgroundSize: "60px 60px",
-      pointerEvents: "none",
-    },
-    heroGlow: {
-      position: "absolute",
-      top: "-20%",
-      right: "-10%",
-      width: "600px",
-      height: "600px",
-      background: "radial-gradient(circle, rgba(57,255,20,0.05) 0%, transparent 70%)",
-      pointerEvents: "none",
-    },
-    heroLabel: {
-      fontFamily: "'Space Mono', monospace",
-      fontSize: "0.75rem",
-      letterSpacing: "0.2em",
-      color: "#39ff14",
-      marginBottom: "1.5rem",
-      display: "flex",
-      alignItems: "center",
-      gap: "12px",
-    },
-    heroLabelLine: {
-      display: "inline-block",
-      width: "40px",
-      height: "1px",
-      background: "#39ff14",
-    },
-    heroName: {
-      fontSize: "clamp(3rem, 8vw, 7rem)",
-      fontWeight: 700,
-      lineHeight: 1,
-      letterSpacing: "-0.02em",
-      color: "#f0f0f0",
-      fontFamily: "'DM Sans', sans-serif",
-      marginBottom: "0.5rem",
-    },
-    heroTitle: {
-      fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
-      color: "#555",
-      fontFamily: "'Space Mono', monospace",
-      marginBottom: "2rem",
-      letterSpacing: "0.05em",
-    },
-    heroTagline: {
-      fontSize: "clamp(1rem, 2vw, 1.25rem)",
-      color: "#888",
-      maxWidth: "560px",
-      lineHeight: 1.6,
-      marginBottom: "3rem",
-      minHeight: "2em",
-    },
-    cursor: {
-      display: "inline-block",
-      width: "2px",
-      height: "1.1em",
-      background: "#39ff14",
-      marginLeft: "3px",
-      verticalAlign: "text-bottom",
-      animation: "blink 1s step-end infinite",
-    },
-    heroCtas: {
-      display: "flex",
-      gap: "1rem",
-      flexWrap: "wrap",
-    },
-    btnPrimary: {
-      fontFamily: "'Space Mono', monospace",
-      fontSize: "0.8rem",
-      letterSpacing: "0.1em",
-      padding: "12px 28px",
-      background: "#39ff14",
-      color: "#0a0a0a",
-      border: "none",
-      borderRadius: "2px",
-      cursor: "pointer",
-      fontWeight: 700,
-      transition: "all 0.2s",
-      textTransform: "uppercase",
-    },
-    btnSecondary: {
-      fontFamily: "'Space Mono', monospace",
-      fontSize: "0.8rem",
-      letterSpacing: "0.1em",
-      padding: "12px 28px",
-      background: "transparent",
-      color: "#d4d4d4",
-      border: "1px solid #333",
-      borderRadius: "2px",
-      cursor: "pointer",
-      transition: "all 0.2s",
-      textTransform: "uppercase",
-    },
-    section: {
-      padding: "100px 8vw",
-      maxWidth: "1200px",
-      margin: "0 auto",
-    },
-    sectionLabel: {
-      fontFamily: "'Space Mono', monospace",
-      fontSize: "0.7rem",
-      letterSpacing: "0.25em",
-      color: "#39ff14",
-      textTransform: "uppercase",
-      marginBottom: "0.75rem",
-      display: "flex",
-      alignItems: "center",
-      gap: "12px",
-    },
-    sectionTitle: {
-      fontSize: "clamp(1.8rem, 4vw, 3rem)",
-      fontWeight: 700,
-      color: "#f0f0f0",
-      letterSpacing: "-0.02em",
-      marginBottom: "3rem",
-      lineHeight: 1.1,
-    },
-    divider: {
-      width: "100%",
-      height: "1px",
-      background: "linear-gradient(90deg, #1a1a1a 0%, #39ff14 30%, #1a1a1a 100%)",
-      marginBottom: "80px",
-    },
+    root: { background: "#0a0a0a", color: "#d4d4d4", fontFamily: "'DM Sans', sans-serif", minHeight: "100vh", overflowX: "hidden" },
+    nav: { position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 5vw", height: "64px", background: "rgba(10,10,10,0.92)", backdropFilter: "blur(12px)", borderBottom: "1px solid #1a1a1a" },
+    logo: { fontFamily: "'Space Mono', monospace", fontSize: "0.9rem", color: "#39ff14", letterSpacing: "0.1em", cursor: "pointer" },
+    navLinks: { display: "flex", gap: "2rem", listStyle: "none", margin: 0, padding: 0 },
+    navLink: (active) => ({ fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.08em", color: active ? "#39ff14" : "#666", cursor: "pointer", transition: "color 0.2s", textTransform: "uppercase", borderBottom: active ? "1px solid #39ff14" : "1px solid transparent", paddingBottom: "2px" }),
+    hero: { minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 8vw", position: "relative", overflow: "hidden" },
+    heroGrid: { position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(57,255,20,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.03) 1px, transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" },
+    heroGlow: { position: "absolute", top: "-20%", right: "-10%", width: "600px", height: "600px", background: "radial-gradient(circle, rgba(57,255,20,0.05) 0%, transparent 70%)", pointerEvents: "none" },
+    heroLabel: { fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", letterSpacing: "0.2em", color: "#39ff14", marginBottom: "1.5rem" },
+    heroName: { fontSize: "clamp(3rem, 8vw, 7rem)", fontWeight: 700, lineHeight: 1, letterSpacing: "-0.02em", color: "#f0f0f0", fontFamily: "'DM Sans', sans-serif", marginBottom: "0.5rem" },
+    heroTitle: { fontSize: "clamp(1rem, 2.5vw, 1.5rem)", color: "#555", fontFamily: "'Space Mono', monospace", marginBottom: "2rem", letterSpacing: "0.05em" },
+    heroTagline: { fontSize: "clamp(1rem, 2vw, 1.25rem)", color: "#888", maxWidth: "560px", lineHeight: 1.6, marginBottom: "3rem", minHeight: "2em" },
+    cursor: { display: "inline-block", width: "2px", height: "1.1em", background: "#39ff14", marginLeft: "3px", verticalAlign: "text-bottom", animation: "blink 1s step-end infinite" },
+    heroCtas: { display: "flex", gap: "1rem", flexWrap: "wrap" },
+    btnPrimary: { fontFamily: "'Space Mono', monospace", fontSize: "0.8rem", letterSpacing: "0.1em", padding: "12px 28px", background: "#39ff14", color: "#0a0a0a", border: "none", borderRadius: "2px", cursor: "pointer", fontWeight: 700, transition: "all 0.2s", textTransform: "uppercase" },
+    btnSecondary: { fontFamily: "'Space Mono', monospace", fontSize: "0.8rem", letterSpacing: "0.1em", padding: "12px 28px", background: "transparent", color: "#d4d4d4", border: "1px solid #333", borderRadius: "2px", cursor: "pointer", transition: "all 0.2s", textTransform: "uppercase" },
+    section: { padding: "100px 8vw", maxWidth: "1200px", margin: "0 auto" },
+    sectionLabel: { fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.25em", color: "#39ff14", textTransform: "uppercase", marginBottom: "0.75rem" },
+    sectionTitle: { fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 700, color: "#f0f0f0", letterSpacing: "-0.02em", marginBottom: "3rem", lineHeight: 1.1 },
+    divider: { width: "100%", height: "1px", background: "linear-gradient(90deg, #1a1a1a 0%, #39ff14 30%, #1a1a1a 100%)", marginBottom: "80px" },
   };
 
   return (
@@ -362,10 +304,6 @@ export default function Portfolio() {
         html { scroll-behavior: smooth; }
         body { background: #0a0a0a; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        @keyframes scanline {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(100vh); }
-        }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; }
         ::-webkit-scrollbar-thumb { background: #39ff14; border-radius: 2px; }
@@ -377,15 +315,10 @@ export default function Portfolio() {
         .nav-link:hover { color: #39ff14 !important; }
         .exp-card:hover { border-left-color: #39ff14 !important; }
         .github-link:hover { color: #39ff14 !important; border-color: #39ff14 !important; }
-
         @media (max-width: 768px) {
           .nav-links-desktop { display: none !important; }
           .nav-mobile-menu { display: flex !important; }
           .about-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-          .project-header { flex-direction: column !important; align-items: flex-start !important; }
-          .project-highlights { flex-direction: column !important; gap: 0.5rem !important; }
-          .exp-header { flex-direction: column !important; }
-          .contact-section { padding: 60px 6vw !important; }
           .hero-section { padding: 0 6vw !important; }
           .section-inner { padding: 60px 6vw !important; }
           .fact-row { flex-direction: column !important; gap: 4px !important; }
@@ -394,138 +327,69 @@ export default function Portfolio() {
       `}</style>
 
       <div style={styles.root}>
-        {/* NAV */}
         <nav style={styles.nav}>
-          <div style={styles.logo} onClick={() => scrollTo("about")}>SS_</div>
+          <div style={styles.logo} onClick={() => scrollTo(t.navLinks[0])}>SS_</div>
           <ul className="nav-links-desktop" style={styles.navLinks}>
-            {NAV_LINKS.map(link => (
+            {t.navLinks.map(link => (
               <li key={link}>
-                <span
-                  className="nav-link"
-                  style={styles.navLink(activeSection === link)}
-                  onClick={() => scrollTo(link)}
-                >
+                <span className="nav-link" style={styles.navLink(activeSection === link)} onClick={() => scrollTo(link)}>
                   {link}
                 </span>
               </li>
             ))}
           </ul>
-          <button
-            className="nav-mobile-menu"
-            onClick={() => setMobileMenuOpen(o => !o)}
-            style={{
-              display: "none",
-              background: "none",
-              border: "1px solid #333",
-              color: "#39ff14",
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.7rem",
-              padding: "6px 12px",
-              cursor: "pointer",
-              letterSpacing: "0.1em",
-            }}
-          >
-            {mobileMenuOpen ? "CLOSE" : "MENU"}
-          </button>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+            <LangToggle lang={lang} setLang={setLang} />
+            <button className="nav-mobile-menu" onClick={() => setMobileMenuOpen(o => !o)} style={{ display: "none", background: "none", border: "1px solid #333", color: "#39ff14", fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", padding: "6px 12px", cursor: "pointer", letterSpacing: "0.1em" }}>
+              {mobileMenuOpen ? "CLOSE" : "MENU"}
+            </button>
+          </div>
         </nav>
+
         {mobileMenuOpen && (
-          <div style={{
-            position: "fixed",
-            top: "64px",
-            left: 0,
-            right: 0,
-            background: "#0d0d0d",
-            borderBottom: "1px solid #1a1a1a",
-            zIndex: 99,
-            padding: "1.5rem 6vw",
-            display: "flex",
-            flexDirection: "column",
-            gap: "1.25rem",
-          }}>
-            {NAV_LINKS.map(link => (
-              <span
-                key={link}
-                onClick={() => { scrollTo(link); setMobileMenuOpen(false); }}
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "0.85rem",
-                  letterSpacing: "0.1em",
-                  color: activeSection === link ? "#39ff14" : "#888",
-                  cursor: "pointer",
-                  textTransform: "uppercase",
-                }}
-              >
+          <div style={{ position: "fixed", top: "64px", left: 0, right: 0, background: "#0d0d0d", borderBottom: "1px solid #1a1a1a", zIndex: 99, padding: "1.5rem 6vw", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+            {t.navLinks.map(link => (
+              <span key={link} onClick={() => { scrollTo(link); setMobileMenuOpen(false); }} style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.85rem", letterSpacing: "0.1em", color: activeSection === link ? "#39ff14" : "#888", cursor: "pointer", textTransform: "uppercase" }}>
                 {link}
               </span>
             ))}
           </div>
         )}
 
-        {/* HERO */}
         <section className="hero-section" style={styles.hero}>
           <div style={styles.heroGrid} />
           <div style={styles.heroGlow} />
           <div style={{ position: "relative", zIndex: 1 }}>
-            <div style={styles.heroLabel}>
-              ROBOTICS ENGINEER — BERLIN
-            </div>
+            <div style={styles.heroLabel}>{t.heroLabel}</div>
             <h1 style={styles.heroName}>Siddhesh<br />Salunkhe</h1>
-            <div style={styles.heroTitle}>{String.fromCharCode(47,47)} Autonomous Systems & Embedded Engineering</div>
-            <p style={styles.heroTagline}>
-              {typed}<span style={styles.cursor} />
-            </p>
+            <div style={styles.heroTitle}>{t.heroTitle}</div>
+            <p style={styles.heroTagline}>{typed}<span style={styles.cursor} /></p>
             <div style={styles.heroCtas}>
-              <button className="btn-primary" style={styles.btnPrimary} onClick={() => scrollTo("Projects")}>
-                View Projects
-              </button>
-              <button className="btn-secondary" style={styles.btnSecondary} onClick={() => scrollTo("Contact")}>
-                Get In Touch
-              </button>
-              <a
-                href="https://github.com/siddhesh1008"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-flex", alignItems: "center" }}
-              >
-                GitHub ↗
-              </a>
+              <button className="btn-primary" style={styles.btnPrimary} onClick={() => scrollTo(t.navLinks[2])}>{t.heroCtas.projects}</button>
+              <button className="btn-secondary" style={styles.btnSecondary} onClick={() => scrollTo(t.navLinks[4])}>{t.heroCtas.contact}</button>
+              <a href="https://github.com/siddhesh1008" target="_blank" rel="noopener noreferrer" style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-flex", alignItems: "center" }}>GitHub ↗</a>
             </div>
           </div>
         </section>
 
         <div style={styles.divider} />
 
-        {/* ABOUT */}
-        <section id="about" className="section-inner" style={styles.section}>
+        <section id={sectionIds[0]} className="section-inner" style={styles.section}>
           <FadeIn>
-            <div style={styles.sectionLabel}>01 — ABOUT</div>
-            <h2 style={styles.sectionTitle}>Who I Am</h2>
+            <div style={styles.sectionLabel}>{t.about.sectionLabel}</div>
+            <h2 style={styles.sectionTitle}>{t.about.sectionTitle}</h2>
           </FadeIn>
           <div className="about-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "start" }}>
             <FadeIn delay={0.1}>
-              <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa", marginBottom: "1.5rem" }}>
-                I build systems that operate in the real world — drones that navigate autonomously, embedded pipelines that process sensor data in real time, and hardware-software integrations that bridge software commands to physical action.
-              </p>
-              <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa", marginBottom: "1.5rem" }}>
-                Finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and working as a Mechatronic Engineer at Better Devices — building Python signal processing pipelines and embedded systems for IoT applications.
-              </p>
-              <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa" }}>
-                I target roles in robotics, industrial automation, autonomous drone development, and defense technology — environments where the engineering actually needs to work.
-              </p>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa", marginBottom: "1.5rem" }}>{t.about.bio1}</p>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa", marginBottom: "1.5rem" }}>{t.about.bio2}</p>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#aaa" }}>{t.about.bio3}</p>
             </FadeIn>
             <FadeIn delay={0.2}>
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                {[
-                  { label: "Location", value: "Berlin, Germany" },
-                  { label: "Education", value: "M.Eng — SRH Berlin (Mar 2026)" },
-                  { label: "Current Role", value: "Mechatronic Engineer @ Better Devices" },
-                  { label: "Languages", value: "English (Fluent), German (B1)" },
-                  { label: "Focus Areas", value: "Drones · Robotics · Defense Tech" },
-                ].map(item => (
+                {t.about.facts.map(item => (
                   <div key={item.label} className="fact-row" style={{ display: "flex", borderBottom: "1px solid #1a1a1a", paddingBottom: "1rem", gap: "1rem" }}>
-                    <span className="fact-label" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#39ff14", letterSpacing: "0.1em", minWidth: "130px", paddingTop: "2px" }}>
-                      {item.label.toUpperCase()}
-                    </span>
+                    <span className="fact-label" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#39ff14", letterSpacing: "0.1em", minWidth: "130px", paddingTop: "2px" }}>{item.label.toUpperCase()}</span>
                     <span style={{ color: "#ccc", fontSize: "0.95rem" }}>{item.value}</span>
                   </div>
                 ))}
@@ -536,28 +400,16 @@ export default function Portfolio() {
 
         <div style={styles.divider} />
 
-        {/* SKILLS */}
-        <section id="skills" className="section-inner" style={{ ...styles.section, maxWidth: "1200px" }}>
+        <section id={sectionIds[1]} className="section-inner" style={{ ...styles.section, maxWidth: "1200px" }}>
           <FadeIn>
-            <div style={styles.sectionLabel}>02 — SKILLS</div>
-            <h2 style={styles.sectionTitle}>Technical Stack</h2>
+            <div style={styles.sectionLabel}>{t.skills.sectionLabel}</div>
+            <h2 style={styles.sectionTitle}>{t.skills.sectionTitle}</h2>
           </FadeIn>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
             {Object.entries(SKILLS).map(([group, items], i) => (
               <FadeIn key={group} delay={i * 0.1}>
-                <div
-                  className="skill-group"
-                  style={{
-                    border: "1px solid #1e1e1e",
-                    borderRadius: "4px",
-                    padding: "1.5rem",
-                    background: "#0d0d0d",
-                    transition: "border-color 0.3s",
-                  }}
-                >
-                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.15em", color: "#39ff14", marginBottom: "1rem", textTransform: "uppercase" }}>
-                    {group}
-                  </div>
+                <div className="skill-group" style={{ border: "1px solid #1e1e1e", borderRadius: "4px", padding: "1.5rem", background: "#0d0d0d", transition: "border-color 0.3s" }}>
+                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.15em", color: "#39ff14", marginBottom: "1rem", textTransform: "uppercase" }}>{group}</div>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                     {items.map(skill => <Tag key={skill} label={skill} />)}
                   </div>
@@ -569,52 +421,25 @@ export default function Portfolio() {
 
         <div style={styles.divider} />
 
-        {/* PROJECTS */}
-        <section id="projects" className="section-inner" style={styles.section}>
+        <section id={sectionIds[2]} className="section-inner" style={styles.section}>
           <FadeIn>
-            <div style={styles.sectionLabel}>03 — PROJECTS</div>
-            <h2 style={styles.sectionTitle}>What I've Built</h2>
+            <div style={styles.sectionLabel}>{t.projects.sectionLabel}</div>
+            <h2 style={styles.sectionTitle}>{t.projects.sectionTitle}</h2>
           </FadeIn>
           <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-            {PROJECTS.map((proj, i) => (
+            {PROJECTS[lang].map((proj, i) => (
               <FadeIn key={proj.id} delay={i * 0.1}>
-                <div
-                  className="project-card"
-                  style={{
-                    border: "1px solid #1e1e1e",
-                    borderRadius: "4px",
-                    padding: "2rem",
-                    background: "#0d0d0d",
-                    transition: "all 0.3s",
-                    cursor: "default",
-                  }}
-                >
+                <div className="project-card" style={{ border: "1px solid #1e1e1e", borderRadius: "4px", padding: "2rem", background: "#0d0d0d", transition: "all 0.3s" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem", flexWrap: "wrap", gap: "0.75rem" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                      <h3 className="project-title" style={{ fontSize: "1.3rem", fontWeight: 700, color: "#f0f0f0", transition: "color 0.3s" }}>
-                        {proj.title}
-                      </h3>
+                      <h3 className="project-title" style={{ fontSize: "1.3rem", fontWeight: 700, color: "#f0f0f0", transition: "color 0.3s" }}>{proj.title}</h3>
                       <StatusBadge status={proj.status} />
                     </div>
-                    <a
-                      href={proj.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="github-link"
-                      style={{
-                        fontFamily: "'Space Mono', monospace",
-                        fontSize: "0.7rem",
-                        letterSpacing: "0.1em",
-                        color: "#555",
-                        textDecoration: "none",
-                        border: "1px solid #2a2a2a",
-                        padding: "4px 12px",
-                        borderRadius: "2px",
-                        transition: "all 0.2s",
-                      }}
-                    >
-                      GITHUB ↗
-                    </a>
+                    {proj.github && (
+                      <a href={proj.github} target="_blank" rel="noopener noreferrer" className="github-link" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "#555", textDecoration: "none", border: "1px solid #2a2a2a", padding: "4px 12px", borderRadius: "2px", transition: "all 0.2s" }}>
+                        GITHUB ↗
+                      </a>
+                    )}
                   </div>
                   <p style={{ color: "#888", lineHeight: 1.7, marginBottom: "1.5rem", fontSize: "0.95rem" }}>{proj.description}</p>
                   <div style={{ display: "flex", gap: "1.5rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
@@ -625,7 +450,7 @@ export default function Portfolio() {
                     ))}
                   </div>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
-                    {proj.tags.map(t => <Tag key={t} label={t} accent />)}
+                    {proj.tags.map(tg => <Tag key={tg} label={tg} accent />)}
                   </div>
                 </div>
               </FadeIn>
@@ -635,23 +460,15 @@ export default function Portfolio() {
 
         <div style={styles.divider} />
 
-        {/* EXPERIENCE */}
-        <section id="experience" className="section-inner" style={styles.section}>
+        <section id={sectionIds[3]} className="section-inner" style={styles.section}>
           <FadeIn>
-            <div style={styles.sectionLabel}>04 — EXPERIENCE</div>
-            <h2 style={styles.sectionTitle}>Where I've Worked</h2>
+            <div style={styles.sectionLabel}>{t.experience.sectionLabel}</div>
+            <h2 style={styles.sectionTitle}>{t.experience.sectionTitle}</h2>
           </FadeIn>
           <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-            {EXPERIENCE.map((exp, i) => (
+            {EXPERIENCE[lang].map((exp, i) => (
               <FadeIn key={exp.company} delay={i * 0.1}>
-                <div
-                  className="exp-card"
-                  style={{
-                    borderLeft: "2px solid #222",
-                    paddingLeft: "2rem",
-                    transition: "border-left-color 0.3s",
-                  }}
-                >
+                <div className="exp-card" style={{ borderLeft: "2px solid #222", paddingLeft: "2rem", transition: "border-left-color 0.3s" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.5rem" }}>
                     <div>
                       <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#f0f0f0" }}>{exp.role}</div>
@@ -674,52 +491,22 @@ export default function Portfolio() {
 
         <div style={styles.divider} />
 
-        {/* CONTACT */}
-        <section id="contact" className="section-inner contact-section" style={{ ...styles.section, textAlign: "center", maxWidth: "700px" }}>
+        <section id={sectionIds[4]} className="section-inner" style={{ ...styles.section, textAlign: "center", maxWidth: "700px" }}>
           <FadeIn>
-            <div style={{ ...styles.sectionLabel, justifyContent: "center" }}>05 — CONTACT</div>
-            <h2 style={{ ...styles.sectionTitle, textAlign: "center" }}>Let's Talk</h2>
-            <p style={{ color: "#888", lineHeight: 1.8, marginBottom: "3rem", fontSize: "1rem" }}>
-              Open to robotics, drone engineering, and defense tech roles in Germany. Reach out directly — no forms, no friction.
-            </p>
+            <div style={{ ...styles.sectionLabel, justifyContent: "center" }}>{t.contact.sectionLabel}</div>
+            <h2 style={{ ...styles.sectionTitle, textAlign: "center" }}>{t.contact.sectionTitle}</h2>
+            <p style={{ color: "#888", lineHeight: 1.8, marginBottom: "3rem", fontSize: "1rem" }}>{t.contact.bio}</p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-              <a
-                href="mailto:siddhesh2152@gmail.com"
-                className="btn-primary"
-                style={{ ...styles.btnPrimary, textDecoration: "none", display: "inline-block" }}
-              >
-                Email Me
-              </a>
-              <a
-                href="https://linkedin.com/in/siddhesh-salunkhe-277257194"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
-                style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-block" }}
-              >
-                LinkedIn ↗
-              </a>
-              <a
-                href="https://github.com/siddhesh1008"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
-                style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-block" }}
-              >
-                GitHub ↗
-              </a>
+              <a href="mailto:siddhesh2152@gmail.com" className="btn-primary" style={{ ...styles.btnPrimary, textDecoration: "none", display: "inline-block" }}>{t.contact.email}</a>
+              <a href="https://linkedin.com/in/siddhesh-salunkhe-277257194" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-block" }}>LinkedIn ↗</a>
+              <a href="https://github.com/siddhesh1008" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-block" }}>GitHub ↗</a>
             </div>
           </FadeIn>
         </section>
 
-        {/* FOOTER */}
         <footer style={{ borderTop: "1px solid #1a1a1a", padding: "2rem 8vw", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
-          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#333" }}>
-            © 2026 SIDDHESH SALUNKHE
-          </span>
-          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#333" }}>
-            BERLIN, GERMANY
-          </span>
+          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#333" }}>© 2026 SIDDHESH SALUNKHE</span>
+          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#333" }}>{t.footer}</span>
         </footer>
       </div>
     </>
