@@ -224,10 +224,10 @@ function StatusBadge({ status }) {
 function LangToggle({ lang, setLang }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-      <button onClick={() => setLang("en")} title="English" style={{ background: "none", border: lang === "en" ? "1px solid #39ff14" : "1px solid #2a2a2a", borderRadius: "3px", padding: "3px 7px", cursor: "pointer", fontSize: "1rem", opacity: lang === "en" ? 1 : 0.4, transition: "all 0.2s" }}>
+      <button onClick={() => setLang("en")} title="English" style={{ background: "transparent", border: lang === "en" ? "1px solid #39ff14" : "1px solid #2a2a2a", borderRadius: "3px", padding: "4px 8px", cursor: "pointer", fontSize: "0.75rem", fontFamily: "'Space Mono', monospace", color: lang === "en" ? "#39ff14" : "#555", letterSpacing: "0.05em", transition: "all 0.2s" }}>
         EN
       </button>
-      <button onClick={() => setLang("de")} title="Deutsch" style={{ background: "none", border: lang === "de" ? "1px solid #39ff14" : "1px solid #2a2a2a", borderRadius: "3px", padding: "3px 7px", cursor: "pointer", fontSize: "1rem", opacity: lang === "de" ? 1 : 0.4, transition: "all 0.2s" }}>
+      <button onClick={() => setLang("de")} title="Deutsch" style={{ background: "transparent", border: lang === "de" ? "1px solid #39ff14" : "1px solid #2a2a2a", borderRadius: "3px", padding: "4px 8px", cursor: "pointer", fontSize: "0.75rem", fontFamily: "'Space Mono', monospace", color: lang === "de" ? "#39ff14" : "#555", letterSpacing: "0.05em", transition: "all 0.2s" }}>
         DE
       </button>
     </div>
