@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 const TRANSLATIONS = {
   en: {
-    navLinks: ["About", "Skills", "Projects", "Experience", "Contact"],
+    navLinks: ["About", "Skills", "Projects", "Gallery", "Experience", "Contact"],
     heroLabel: "ROBOTICS ENGINEER — BERLIN",
     heroTitle: "// Autonomous Systems & Embedded Engineering",
     heroTagline: "Building systems that move, sense, and decide.",
@@ -23,9 +23,17 @@ const TRANSLATIONS = {
     },
     skills: { sectionLabel: "02 — SKILLS", sectionTitle: "Technical Stack" },
     projects: { sectionLabel: "03 — PROJECTS", sectionTitle: "What I've Built" },
-    experience: { sectionLabel: "04 — EXPERIENCE", sectionTitle: "Where I've Worked" },
+    gallery: {
+      sectionLabel: "04 — GALLERY",
+      sectionTitle: "In Action",
+      filterAll: "ALL",
+      filterPhotos: "PHOTOS",
+      filterVideos: "VIDEOS",
+      viewPhoto: "View Photo",
+    },
+    experience: { sectionLabel: "05 — EXPERIENCE", sectionTitle: "Where I've Worked" },
     contact: {
-      sectionLabel: "05 — CONTACT",
+      sectionLabel: "06 — CONTACT",
       sectionTitle: "Let's Talk",
       bio: "Open to robotics, drone engineering, and defense tech roles in Germany. Reach out directly — no forms, no friction.",
       email: "Email Me",
@@ -33,7 +41,7 @@ const TRANSLATIONS = {
     footer: "BERLIN, GERMANY",
   },
   de: {
-    navLinks: ["Über mich", "Fähigkeiten", "Projekte", "Erfahrung", "Kontakt"],
+    navLinks: ["Über mich", "Fähigkeiten", "Projekte", "Galerie", "Erfahrung", "Kontakt"],
     heroLabel: "ROBOTIK-INGENIEUR — BERLIN",
     heroTitle: "// Autonome Systeme & Embedded Engineering",
     heroTagline: "Systeme bauen, die sich bewegen, wahrnehmen und entscheiden.",
@@ -54,9 +62,17 @@ const TRANSLATIONS = {
     },
     skills: { sectionLabel: "02 — FÄHIGKEITEN", sectionTitle: "Technisches Stack" },
     projects: { sectionLabel: "03 — PROJEKTE", sectionTitle: "Was ich gebaut habe" },
-    experience: { sectionLabel: "04 — ERFAHRUNG", sectionTitle: "Wo ich gearbeitet habe" },
+    gallery: {
+      sectionLabel: "04 — GALERIE",
+      sectionTitle: "In Aktion",
+      filterAll: "ALLE",
+      filterPhotos: "FOTOS",
+      filterVideos: "VIDEOS",
+      viewPhoto: "Foto ansehen",
+    },
+    experience: { sectionLabel: "05 — ERFAHRUNG", sectionTitle: "Wo ich gearbeitet habe" },
     contact: {
-      sectionLabel: "05 — KONTAKT",
+      sectionLabel: "06 — KONTAKT",
       sectionTitle: "Lass uns reden",
       bio: "Offen für Stellen in der Robotik, Drohnentechnik und Verteidigungstechnologie in Deutschland. Direkt kontaktieren — kein Formular, kein Aufwand.",
       email: "E-Mail senden",
@@ -81,6 +97,7 @@ const PROJECTS = {
       tags: ["ArduPilot", "MAVLink", "Pixhawk", "Raspberry Pi", "Python"],
       description: "Designed and built a fully autonomous drone from scratch. Implemented GPS waypoint navigation, return-to-launch, and altitude hold without human input. Built a real-time telemetry pipeline from sensor data through to autonomous decision-making.",
       highlights: ["GPS waypoint navigation", "Real-time telemetry pipeline", "Industrial use: mapping, inspection, delivery"],
+      galleryLink: true,
     },
     {
       id: "ai-assistant",
@@ -98,7 +115,7 @@ const PROJECTS = {
       tags: ["ArduPilot", "ELRS", "FPV", "Head Tracking", "MAVLink", "Python"],
       description: "Built a 90mm fighter jet replica with a fully integrated ArduPilot flight stack. Features autonomous return-to-home, GPS waypoint navigation, and real-time telemetry. Equipped with a head-tracking FPV setup that provides a real-life simulation perspective — designed for pilot training use cases. Hardware includes retractable landing gear and an ELRS long-range control link.",
       highlights: ["Head-tracking FPV for pilot training", "Retractable landing gear", "Autonomous RTH & waypoint nav", "ELRS long-range link"],
-      youtube: "https://www.youtube.com/embed/nUOmQd3p6PQ?autoplay=1&mute=1",
+      youtube: "https://www.youtube.com/embed/nUOmQd3p6PQ",
     },
   ],
   de: [
@@ -109,6 +126,7 @@ const PROJECTS = {
       tags: ["ArduPilot", "MAVLink", "Pixhawk", "Raspberry Pi", "Python"],
       description: "Entwurf und Bau einer vollautonomen Drohne von Grund auf. Implementierung von GPS-Wegpunktnavigation, Return-to-Launch und Höhenhaltung ohne menschliche Eingabe. Aufbau einer Echtzeit-Telemetriepipeline von Sensordaten bis zur autonomen Entscheidungsfindung.",
       highlights: ["GPS-Wegpunktnavigation", "Echtzeit-Telemetriepipeline", "Industriell: Kartierung, Inspektion, Lieferung"],
+      galleryLink: true,
     },
     {
       id: "ai-assistant",
@@ -126,10 +144,19 @@ const PROJECTS = {
       tags: ["ArduPilot", "ELRS", "FPV", "Head Tracking", "MAVLink", "Python"],
       description: "Bau einer 90mm Kampfjet-Replik mit vollständig integriertem ArduPilot-Flugstack. Funktionen: autonomes Return-to-Home, GPS-Wegpunktnavigation und Echtzeit-Telemetrie. Ausgestattet mit einem Head-Tracking-FPV-System für eine realitätsnahe Simulationsperspektive — konzipiert für Pilotenausbildung. Hardware umfasst einfahrbare Fahrwerke und einen ELRS-Langstrecken-Steuerlink.",
       highlights: ["Head-Tracking-FPV für Pilotentraining", "Einfahrbares Fahrwerk", "Autonomes RTH & Wegpunktnavigation", "ELRS-Langstreckenlink"],
-      youtube: "https://www.youtube.com/embed/nUOmQd3p6PQ?autoplay=1&mute=1",
+      youtube: "https://www.youtube.com/embed/nUOmQd3p6PQ",
     },
   ],
 };
+
+const GALLERY = [
+  { id: "g1", type: "video", src: "https://www.youtube.com/embed/AtVrseFuo3U", caption: "Autonomous Drone — Flight Test" },
+  { id: "g2", type: "video", src: "https://www.youtube.com/embed/v2XD-vythfE", caption: "Autonomous Drone — Field Session" },
+  { id: "g3", type: "video", src: "https://www.youtube.com/embed/VYFB83szTE8", caption: "Autonomous Drone — Short Clip" },
+  { id: "g4", type: "video", src: "https://www.youtube.com/embed/edYdhTGV3Os", caption: "Autonomous Drone — Short Clip 2" },
+  { id: "g5", type: "image", src: "/images/IMG_5376.jpg", caption: "Autonomous Drone — Build" },
+  { id: "g6", type: "image", src: "/images/IMG_6183.jpg", caption: "Autonomous Drone — Hardware" },
+];
 
 const EXPERIENCE = {
   en: [
@@ -236,6 +263,103 @@ function LangToggle({ lang, setLang }) {
   );
 }
 
+function GallerySection({ t, lang, styles }) {
+  const [filter, setFilter] = useState("ALL");
+  const [lightbox, setLightbox] = useState(null);
+
+  const filterKey = lang === "en" ? { ALL: "ALL", PHOTOS: "PHOTOS", VIDEOS: "VIDEOS" } : { ALL: "ALLE", PHOTOS: "FOTOS", VIDEOS: "VIDEOS" };
+  const filtered = GALLERY.filter(item => {
+    if (filter === filterKey.ALL || filter === "ALL" || filter === "ALLE") return true;
+    if (filter === filterKey.PHOTOS || filter === "PHOTOS" || filter === "FOTOS") return item.type === "image";
+    if (filter === filterKey.VIDEOS || filter === "VIDEOS") return item.type === "video";
+    return true;
+  });
+
+  const sectionId = lang === "en" ? "gallery" : "galerie";
+
+  return (
+    <>
+      <section id={sectionId} className="section-inner" style={{ ...styles.section, maxWidth: "1200px" }}>
+        <FadeIn>
+          <div style={styles.sectionLabel}>{t.gallery.sectionLabel}</div>
+          <h2 style={styles.sectionTitle}>{t.gallery.sectionTitle}</h2>
+        </FadeIn>
+        <div style={{ display: "flex", gap: "0.75rem", marginBottom: "2.5rem", flexWrap: "wrap" }}>
+          {[t.gallery.filterAll, t.gallery.filterPhotos, t.gallery.filterVideos].map(f => (
+            <button
+              key={f}
+              onClick={() => setFilter(f)}
+              style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", padding: "6px 16px", borderRadius: "2px", border: filter === f ? "1px solid #39ff14" : "1px solid #333", color: filter === f ? "#39ff14" : "#666", background: "transparent", cursor: "pointer", transition: "all 0.2s" }}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "1.5rem" }}>
+          {filtered.map((item, i) => (
+            <FadeIn key={item.id} delay={i * 0.05}>
+              {item.type === "video" ? (
+                <div style={{ borderRadius: "4px", overflow: "hidden", border: "1px solid #1e1e1e", background: "#0d0d0d" }}>
+                  <iframe
+                    width="100%"
+                    height="220"
+                    src={item.src}
+                    title={item.caption}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ display: "block" }}
+                  />
+                  <div style={{ padding: "0.75rem 1rem", fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", color: "#555", letterSpacing: "0.08em" }}>
+                    {item.caption.toUpperCase()}
+                  </div>
+                </div>
+              ) : (
+                <div
+                  onClick={() => setLightbox(item)}
+                  style={{ borderRadius: "4px", overflow: "hidden", border: "1px solid #1e1e1e", background: "#0d0d0d", cursor: "pointer", transition: "all 0.3s" }}
+                  className="gallery-img-card"
+                >
+                  <div style={{ position: "relative", paddingTop: "62%" }}>
+                    <img
+                      src={item.src}
+                      alt={item.caption}
+                      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                    />
+                    <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s" }} className="gallery-overlay">
+                      <span style={{ color: "#39ff14", fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", opacity: 0 }} className="gallery-zoom">⊕ VIEW</span>
+                    </div>
+                  </div>
+                  <div style={{ padding: "0.75rem 1rem", fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", color: "#555", letterSpacing: "0.08em" }}>
+                    {item.caption.toUpperCase()}
+                  </div>
+                </div>
+              )}
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {lightbox && (
+        <div
+          onClick={() => setLightbox(null)}
+          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.92)", zIndex: 999, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", cursor: "pointer" }}
+        >
+          <div style={{ position: "relative", maxWidth: "90vw", maxHeight: "90vh" }} onClick={e => e.stopPropagation()}>
+            <img src={lightbox.src} alt={lightbox.caption} style={{ maxWidth: "90vw", maxHeight: "80vh", objectFit: "contain", borderRadius: "4px", display: "block" }} />
+            <div style={{ textAlign: "center", marginTop: "1rem", fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#666", letterSpacing: "0.1em" }}>
+              {lightbox.caption.toUpperCase()}
+            </div>
+            <button onClick={() => setLightbox(null)} style={{ position: "absolute", top: "-2rem", right: 0, background: "none", border: "none", color: "#39ff14", fontFamily: "'Space Mono', monospace", fontSize: "0.8rem", cursor: "pointer", letterSpacing: "0.1em" }}>
+              CLOSE ✕
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 export default function Portfolio() {
   const [lang, setLang] = useState("en");
   const [activeSection, setActiveSection] = useState("About");
@@ -316,7 +440,9 @@ export default function Portfolio() {
         .skill-group:hover { border-color: #2a2a2a !important; }
         .nav-link:hover { color: #39ff14 !important; }
         .exp-card:hover { border-left-color: #39ff14 !important; }
-        .github-link:hover { color: #39ff14 !important; border-color: #39ff14 !important; }
+        .gallery-img-card:hover { border-color: #39ff14 !important; }
+        .gallery-img-card:hover .gallery-overlay { background: rgba(0,0,0,0.5) !important; }
+        .gallery-img-card:hover .gallery-zoom { opacity: 1 !important; }
         @media (max-width: 768px) {
           .nav-links-desktop { display: none !important; }
           .nav-mobile-menu { display: flex !important; }
@@ -368,7 +494,7 @@ export default function Portfolio() {
             <p style={styles.heroTagline}>{typed}<span style={styles.cursor} /></p>
             <div style={styles.heroCtas}>
               <button className="btn-primary" style={styles.btnPrimary} onClick={() => scrollTo(t.navLinks[2])}>{t.heroCtas.projects}</button>
-              <button className="btn-secondary" style={styles.btnSecondary} onClick={() => scrollTo(t.navLinks[4])}>{t.heroCtas.contact}</button>
+              <button className="btn-secondary" style={styles.btnSecondary} onClick={() => scrollTo(t.navLinks[5])}>{t.heroCtas.contact}</button>
               <a href="https://github.com/siddhesh1008" target="_blank" rel="noopener noreferrer" style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-flex", alignItems: "center" }}>GitHub ↗</a>
             </div>
           </div>
@@ -454,6 +580,16 @@ export default function Portfolio() {
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                     {proj.tags.map(tg => <Tag key={tg} label={tg} accent />)}
                   </div>
+                  {proj.galleryLink && (
+                    <div style={{ marginTop: "1.5rem" }}>
+                      <button
+                        onClick={() => scrollTo(t.navLinks[3])}
+                        style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "#39ff14", background: "transparent", border: "1px solid #39ff14", padding: "6px 16px", borderRadius: "2px", cursor: "pointer", transition: "all 0.2s" }}
+                      >
+                        ▸ {lang === "en" ? "View Gallery" : "Galerie ansehen"}
+                      </button>
+                    </div>
+                  )}
                   {proj.youtube && (
                     <div style={{ marginTop: "1.5rem", borderRadius: "4px", overflow: "hidden", border: "1px solid #1e1e1e" }}>
                       <iframe
@@ -476,7 +612,12 @@ export default function Portfolio() {
 
         <div style={styles.divider} />
 
-        <section id={sectionIds[3]} className="section-inner" style={styles.section}>
+        {/* GALLERY */}
+        <GallerySection t={t} lang={lang} styles={styles} />
+
+        <div style={styles.divider} />
+
+        <section id={sectionIds[4]} className="section-inner" style={styles.section}>
           <FadeIn>
             <div style={styles.sectionLabel}>{t.experience.sectionLabel}</div>
             <h2 style={styles.sectionTitle}>{t.experience.sectionTitle}</h2>
@@ -507,7 +648,7 @@ export default function Portfolio() {
 
         <div style={styles.divider} />
 
-        <section id={sectionIds[4]} className="section-inner" style={{ ...styles.section, textAlign: "center", maxWidth: "700px" }}>
+        <section id={sectionIds[5]} className="section-inner" style={{ ...styles.section, textAlign: "center", maxWidth: "700px" }}>
           <FadeIn>
             <div style={{ ...styles.sectionLabel, justifyContent: "center" }}>{t.contact.sectionLabel}</div>
             <h2 style={{ ...styles.sectionTitle, textAlign: "center" }}>{t.contact.sectionTitle}</h2>
