@@ -563,11 +563,6 @@ export default function Portfolio() {
                       <h3 className="project-title" style={{ fontSize: "1.3rem", fontWeight: 700, color: "#f0f0f0", transition: "color 0.3s" }}>{proj.title}</h3>
                       <StatusBadge status={proj.status} />
                     </div>
-                    {proj.github && (
-                      <a href={proj.github} target="_blank" rel="noopener noreferrer" className="github-link" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "#555", textDecoration: "none", border: "1px solid #2a2a2a", padding: "4px 12px", borderRadius: "2px", transition: "all 0.2s" }}>
-                        GITHUB ↗
-                      </a>
-                    )}
                   </div>
                   <p style={{ color: "#888", lineHeight: 1.7, marginBottom: "1.5rem", fontSize: "0.95rem" }}>{proj.description}</p>
                   <div style={{ display: "flex", gap: "1.5rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
@@ -580,14 +575,21 @@ export default function Portfolio() {
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                     {proj.tags.map(tg => <Tag key={tg} label={tg} accent />)}
                   </div>
-                  {proj.galleryLink && (
-                    <div style={{ marginTop: "1.5rem" }}>
-                      <button
-                        onClick={() => scrollTo(t.navLinks[3])}
-                        style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "#39ff14", background: "transparent", border: "1px solid #39ff14", padding: "6px 16px", borderRadius: "2px", cursor: "pointer", transition: "all 0.2s" }}
-                      >
-                        ▸ {lang === "en" ? "View Gallery" : "Galerie ansehen"}
-                      </button>
+                  {(proj.galleryLink || proj.github) && (
+                    <div style={{ display: "flex", gap: "0.75rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
+                      {proj.galleryLink && (
+                        <button
+                          onClick={() => scrollTo(t.navLinks[3])}
+                          style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "#39ff14", background: "transparent", border: "1px solid #39ff14", padding: "6px 16px", borderRadius: "2px", cursor: "pointer", transition: "all 0.2s" }}
+                        >
+                          ▸ {lang === "en" ? "View Gallery" : "Galerie ansehen"}
+                        </button>
+                      )}
+                      {proj.github && (
+                        <a href={proj.github} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "#39ff14", textDecoration: "none", border: "1px solid #39ff14", padding: "6px 16px", borderRadius: "2px", transition: "all 0.2s", display: "inline-block" }}>
+                          ▸ GITHUB
+                        </a>
+                      )}
                     </div>
                   )}
                   {proj.youtube && (
