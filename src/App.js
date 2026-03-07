@@ -657,6 +657,7 @@ export default function Portfolio() {
               <a href="mailto:siddhesh2152@gmail.com" className="btn-primary" style={{ ...styles.btnPrimary, textDecoration: "none", display: "inline-block" }}>{t.contact.email}</a>
               <a href="https://linkedin.com/in/siddhesh-salunkhe-277257194" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-block" }}>LinkedIn ↗</a>
               <a href="https://github.com/siddhesh1008" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-block" }}>GitHub ↗</a>
+              <a href="https://www.instagram.com/frosty_fpv_/" target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-block" }}>Instagram ↗</a>
             </div>
           </FadeIn>
         </section>
