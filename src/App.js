@@ -85,7 +85,7 @@ const SKILLS = {
   "Flight & Autonomy": ["ArduPilot", "MAVLink", "Pixhawk / CubePilot", "GPS Waypoint Nav", "Autonomous Flight Behaviours"],
   "Embedded & Hardware": ["Embedded Systems", "PCB Design", "Sensor Integration", "Signal Processing", "Arduino / Raspberry Pi", "IoT / Hardware-Software Integration"],
   "Software & CV": ["Python", "C / C++", "OpenCV", "Depth Sensing (OpenNI2)", "OpenAI API", "Speech Recognition"],
-  "Tools & Methods": ["Linux", "Git", "CAD Modelling", "Agile", "ROS2 Fundamentals", "Data Pipelines"],
+  "Tools & Methods": ["Linux", "Git", "CAD Modelling", "Agile", "ROS2 (Humble)", "URDF / RViz", "NVIDIA Jetson", "Data Pipelines"],
 };
 
 const PROJECTS = {
@@ -107,6 +107,16 @@ const PROJECTS = {
       description: "Built an AI assistant with computer vision and speech recognition for natural language interaction. Designed a hardware control pipeline connecting software commands to physical relay modules via Arduino — autonomously controlling room lighting and appliances.",
       highlights: ["Natural language + vision input", "Relay module hardware control", "Sensor-to-action automation pipeline"],
       github: "https://github.com/siddhesh1008",
+    },
+    {
+      id: "robotic-arm",
+      title: "6DOF Robotic Arm with Digital Twin",
+      status: "IN PROGRESS",
+      tags: ["ROS2", "NVIDIA Jetson", "Python", "URDF", "RViz", "C++", "I2C", "Linux"],
+      description: "Building a 6DOF robotic arm from scratch — no kit, no tutorial code. Every ROS2 node, URDF config, and hardware driver written and debugged manually. Runs on a Jetson Orin Nano with a PCA9685 PWM driver controlling 6x MG996R servos over I2C. Built a real-time sim-to-real bridge: move the sliders in RViz, the physical arm follows — with deadband filtering to eliminate servo jitter.",
+      highlights: ["Digital twin in RViz with sim-to-real bridge", "Keyboard teleoperation with per-joint control", "Headless Jetson over Tailscale VPN + NoMachine"],
+      github: "https://github.com/siddhesh1008/ros2_6dof_arm",
+      youtube: "https://www.youtube.com/embed/ITl2RPDSi9A",
     },
     {
       id: "jet",
@@ -136,6 +146,16 @@ const PROJECTS = {
       description: "Entwicklung eines KI-Assistenten mit Computer Vision und Spracherkennung für natürliche Sprachinteraktion. Entwurf einer Hardware-Steuerungspipeline, die Softwarebefehle über Arduino mit physischen Relaismodulen verbindet — zur autonomen Steuerung von Beleuchtung und Geräten.",
       highlights: ["Sprach- und Bildeingabe", "Relaismodul-Hardwaresteuerung", "Sensor-zu-Aktion-Pipeline"],
       github: "https://github.com/siddhesh1008",
+    },
+    {
+      id: "robotic-arm",
+      title: "6DOF Roboterarm mit digitalem Zwilling",
+      status: "IN BEARBEITUNG",
+      tags: ["ROS2", "NVIDIA Jetson", "Python", "URDF", "RViz", "C++", "I2C", "Linux"],
+      description: "Aufbau eines 6DOF-Roboterarms von Grund auf — kein Bausatz, kein Tutorial-Code. Jeder ROS2-Knoten, jede URDF-Konfiguration und jeder Hardware-Treiber manuell geschrieben und debuggt. Läuft auf einem Jetson Orin Nano mit PCA9685-PWM-Treiber zur Steuerung von 6x MG996R-Servos über I2C. Echtzeit-Sim-to-Real-Bridge: Slider in RViz bewegen, der physische Arm folgt — mit Deadband-Filterung zur Vermeidung von Servo-Jitter.",
+      highlights: ["Digitaler Zwilling in RViz mit Sim-to-Real-Bridge", "Tastatur-Teleoperation mit gelenkweiser Steuerung", "Headless Jetson über Tailscale VPN + NoMachine"],
+      github: "https://github.com/siddhesh1008/ros2_6dof_arm",
+      youtube: "https://www.youtube.com/embed/ITl2RPDSi9A",
     },
     {
       id: "jet",
