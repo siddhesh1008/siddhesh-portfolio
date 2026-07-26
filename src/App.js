@@ -117,10 +117,11 @@ const PROJECTS = {
       highlights: ["Natural language + vision input", "Relay module hardware control", "Sensor-to-action automation pipeline"],
       github: "https://github.com/siddhesh1008",
     },
+    // Discontinued: the mechanical arm broke down during testing.
     {
       id: "robotic-arm",
       title: "6DOF Robotic Arm with Digital Twin",
-      status: "IN PROGRESS",
+      status: "DISCONTINUED",
       tags: ["ROS2", "NVIDIA Jetson", "Python", "URDF", "RViz", "C++", "I2C", "Linux"],
       description: "Building a 6DOF robotic arm from scratch — no kit, no tutorial code. Every ROS2 node, URDF config, and hardware driver written and debugged manually. Runs on a Jetson Orin Nano with a PCA9685 PWM driver controlling 6x MG996R servos over I2C. Built a real-time sim-to-real bridge: move the sliders in RViz, the physical arm follows — with deadband filtering to eliminate servo jitter.",
       highlights: ["Digital twin in RViz with sim-to-real bridge", "Keyboard teleoperation with per-joint control", "Headless Jetson over Tailscale VPN + NoMachine"],
@@ -174,10 +175,11 @@ const PROJECTS = {
       highlights: ["Sprach- und Bildeingabe", "Relaismodul-Hardwaresteuerung", "Sensor-zu-Aktion-Pipeline"],
       github: "https://github.com/siddhesh1008",
     },
+    // Eingestellt: der mechanische Arm ist beim Testen ausgefallen.
     {
       id: "robotic-arm",
       title: "6DOF Roboterarm mit digitalem Zwilling",
-      status: "IN BEARBEITUNG",
+      status: "EINGESTELLT",
       tags: ["ROS2", "NVIDIA Jetson", "Python", "URDF", "RViz", "C++", "I2C", "Linux"],
       description: "Aufbau eines 6DOF-Roboterarms von Grund auf — kein Bausatz, kein Tutorial-Code. Jeder ROS2-Knoten, jede URDF-Konfiguration und jeder Hardware-Treiber manuell geschrieben und debuggt. Läuft auf einem Jetson Orin Nano mit PCA9685-PWM-Treiber zur Steuerung von 6x MG996R-Servos über I2C. Echtzeit-Sim-to-Real-Bridge: Slider in RViz bewegen, der physische Arm folgt — mit Deadband-Filterung zur Vermeidung von Servo-Jitter.",
       highlights: ["Digitaler Zwilling in RViz mit Sim-to-Real-Bridge", "Tastatur-Teleoperation mit gelenkweiser Steuerung", "Headless Jetson über Tailscale VPN + NoMachine"],
@@ -330,8 +332,11 @@ function Tag({ label, accent = false }) {
 
 function StatusBadge({ status }) {
   const isComplete = status === "COMPLETE" || status === "ABGESCHLOSSEN";
+  const isDiscontinued = status === "DISCONTINUED" || status === "EINGESTELLT";
+  const color = isDiscontinued ? "#ff3b30" : isComplete ? "#39ff14" : "#f59e0b";
+  const background = isDiscontinued ? "rgba(255,59,48,0.08)" : isComplete ? "rgba(57,255,20,0.06)" : "rgba(245,158,11,0.08)";
   return (
-    <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.12em", padding: "2px 8px", borderRadius: "2px", border: `1px solid ${isComplete ? "#39ff14" : "#f59e0b"}`, color: isComplete ? "#39ff14" : "#f59e0b", background: isComplete ? "rgba(57,255,20,0.06)" : "rgba(245,158,11,0.08)" }}>
+    <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.12em", padding: "2px 8px", borderRadius: "2px", border: `1px solid ${color}`, color, background }}>
       {status}
     </span>
   );
