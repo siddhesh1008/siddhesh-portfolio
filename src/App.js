@@ -124,7 +124,7 @@ const PROJECTS = {
       status: "DISCONTINUED",
       tags: ["ROS2", "NVIDIA Jetson", "Python", "URDF", "RViz", "C++", "I2C", "Linux"],
       description: "Building a 6DOF robotic arm from scratch — no kit, no tutorial code. Every ROS2 node, URDF config, and hardware driver written and debugged manually. Runs on a Jetson Orin Nano with a PCA9685 PWM driver controlling 6x MG996R servos over I2C. Built a real-time sim-to-real bridge: move the sliders in RViz, the physical arm follows — with deadband filtering to eliminate servo jitter.",
-      highlights: ["Digital twin in RViz with sim-to-real bridge", "Keyboard teleoperation with per-joint control", "Headless Jetson over Tailscale VPN + NoMachine"],
+      highlights: ["Digital twin in RViz with sim-to-real bridge", "Keyboard teleoperation with per-joint control", "Headless Jetson over Tailscale VPN + NoMachine", "Discontinued: the mechanical arm broke down during testing."],
       github: "https://github.com/siddhesh1008/ros2-6dof-arm",
       youtube: "https://www.youtube.com/embed/ITl2RPDSi9A",
     },
