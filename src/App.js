@@ -181,10 +181,22 @@ const GALLERY = [
 const EXPERIENCE = {
   en: [
     {
+      role: "Junior Software & Robotics Engineer",
+      company: "R3 Robotics",
+      location: "Kuppenheim, Germany",
+      period: "Jun 2026 – Present",
+      points: [
+        "KUKA robot automation and software scripting for EV battery disassembly",
+        "Build and maintain automation scripts for industrial robotic cells",
+        "Contribute to digital-twin simulations for KUKA robots",
+        "Maintain the frontend operator interface for robot-cell monitoring and control",
+      ],
+    },
+    {
       role: "Mechatronic Engineer — Working Student",
       company: "Better Devices",
       location: "Berlin, Germany",
-      period: "Sep 2024 – Present",
+      period: "Sep 2024 – May 2026",
       points: [
         "Python scripts for electronic signal processing and embedded data pipelines",
         "Hardware-software integration, sensor interfacing, real-time data handling",
@@ -207,10 +219,22 @@ const EXPERIENCE = {
   ],
   de: [
     {
+      role: "Junior Software- & Robotik-Ingenieur",
+      company: "R3 Robotics",
+      location: "Kuppenheim, Deutschland",
+      period: "Jun 2026 – heute",
+      points: [
+        "KUKA-Roboterautomatisierung und Softwareskripting für die Demontage von EV-Batterien",
+        "Entwicklung und Wartung von Automatisierungsskripten für industrielle Roboterzellen",
+        "Mitwirkung an digitalen Zwilling-Simulationen für KUKA-Roboter",
+        "Wartung der Frontend-Bedienoberfläche für die Überwachung und Steuerung von Roboterzellen",
+      ],
+    },
+    {
       role: "Mechatronik-Ingenieur — Werkstudent",
       company: "Better Devices",
       location: "Berlin, Deutschland",
-      period: "Sep 2024 – heute",
+      period: "Sep 2024 – Mai 2026",
       points: [
         "Python-Skripte für elektronische Signalverarbeitung und eingebettete Datenpipelines",
         "Hardware-Software-Integration, Sensoranbindung, Echtzeit-Datenverarbeitung",
