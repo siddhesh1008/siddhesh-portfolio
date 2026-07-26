@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 const TRANSLATIONS = {
   en: {
-    navLinks: ["About", "Skills", "Projects", "Gallery", "Experience", "Contact"],
+    navLinks: ["About", "Experience", "Skills", "Projects", "Gallery", "Contact"],
     heroLabel: "ROBOTICS ENGINEER — BERLIN",
     heroTitle: "// Autonomous Systems & Embedded Engineering",
     heroTagline: "Building systems that move, sense, and decide.",
@@ -21,17 +21,17 @@ const TRANSLATIONS = {
         { label: "Focus Areas", value: "Drones · Robotics · Defense Tech" },
       ],
     },
-    skills: { sectionLabel: "02 — SKILLS", sectionTitle: "Technical Stack" },
-    projects: { sectionLabel: "03 — PROJECTS", sectionTitle: "What I've Built" },
+    experience: { sectionLabel: "02 — EXPERIENCE", sectionTitle: "Where I've Worked" },
+    skills: { sectionLabel: "03 — SKILLS", sectionTitle: "Technical Stack" },
+    projects: { sectionLabel: "04 — PROJECTS", sectionTitle: "What I've Built" },
     gallery: {
-      sectionLabel: "04 — GALLERY",
+      sectionLabel: "05 — GALLERY",
       sectionTitle: "In Action",
       filterAll: "ALL",
       filterPhotos: "PHOTOS",
       filterVideos: "VIDEOS",
       viewPhoto: "View Photo",
     },
-    experience: { sectionLabel: "05 — EXPERIENCE", sectionTitle: "Where I've Worked" },
     contact: {
       sectionLabel: "06 — CONTACT",
       sectionTitle: "Let's Talk",
@@ -41,7 +41,7 @@ const TRANSLATIONS = {
     footer: "BERLIN, GERMANY",
   },
   de: {
-    navLinks: ["Über mich", "Fähigkeiten", "Projekte", "Galerie", "Erfahrung", "Kontakt"],
+    navLinks: ["Über mich", "Erfahrung", "Fähigkeiten", "Projekte", "Galerie", "Kontakt"],
     heroLabel: "ROBOTIK-INGENIEUR — BERLIN",
     heroTitle: "// Autonome Systeme & Embedded Engineering",
     heroTagline: "Systeme bauen, die sich bewegen, wahrnehmen und entscheiden.",
@@ -60,17 +60,17 @@ const TRANSLATIONS = {
         { label: "Schwerpunkte", value: "Drohnen · Robotik · Verteidigungstechnik" },
       ],
     },
-    skills: { sectionLabel: "02 — FÄHIGKEITEN", sectionTitle: "Technisches Stack" },
-    projects: { sectionLabel: "03 — PROJEKTE", sectionTitle: "Was ich gebaut habe" },
+    experience: { sectionLabel: "02 — ERFAHRUNG", sectionTitle: "Wo ich gearbeitet habe" },
+    skills: { sectionLabel: "03 — FÄHIGKEITEN", sectionTitle: "Technisches Stack" },
+    projects: { sectionLabel: "04 — PROJEKTE", sectionTitle: "Was ich gebaut habe" },
     gallery: {
-      sectionLabel: "04 — GALERIE",
+      sectionLabel: "05 — GALERIE",
       sectionTitle: "In Aktion",
       filterAll: "ALLE",
       filterPhotos: "FOTOS",
       filterVideos: "VIDEOS",
       viewPhoto: "Foto ansehen",
     },
-    experience: { sectionLabel: "05 — ERFAHRUNG", sectionTitle: "Wo ich gearbeitet habe" },
     contact: {
       sectionLabel: "06 — KONTAKT",
       sectionTitle: "Lass uns reden",
@@ -513,7 +513,7 @@ export default function Portfolio() {
             <div style={styles.heroTitle}>{t.heroTitle}</div>
             <p style={styles.heroTagline}>{typed}<span style={styles.cursor} /></p>
             <div style={styles.heroCtas}>
-              <button className="btn-primary" style={styles.btnPrimary} onClick={() => scrollTo(t.navLinks[2])}>{t.heroCtas.projects}</button>
+              <button className="btn-primary" style={styles.btnPrimary} onClick={() => scrollTo(t.navLinks[3])}>{t.heroCtas.projects}</button>
               <button className="btn-secondary" style={styles.btnSecondary} onClick={() => scrollTo(t.navLinks[5])}>{t.heroCtas.contact}</button>
               <a href="https://github.com/siddhesh1008" target="_blank" rel="noopener noreferrer" style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-flex", alignItems: "center" }}>GitHub ↗</a>
             </div>
@@ -548,7 +548,38 @@ export default function Portfolio() {
 
         <div style={styles.divider} />
 
-        <section id={sectionIds[1]} className="section-inner" style={{ ...styles.section, maxWidth: "1200px" }}>
+        <section id={sectionIds[1]} className="section-inner" style={styles.section}>
+          <FadeIn>
+            <div style={styles.sectionLabel}>{t.experience.sectionLabel}</div>
+            <h2 style={styles.sectionTitle}>{t.experience.sectionTitle}</h2>
+          </FadeIn>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+            {EXPERIENCE[lang].map((exp, i) => (
+              <FadeIn key={exp.company} delay={i * 0.1}>
+                <div className="exp-card" style={{ borderLeft: "2px solid #222", paddingLeft: "2rem", transition: "border-left-color 0.3s" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.5rem" }}>
+                    <div>
+                      <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#f0f0f0" }}>{exp.role}</div>
+                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.8rem", color: "#39ff14", marginTop: "2px" }}>{exp.company} — {exp.location}</div>
+                    </div>
+                    <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#555", letterSpacing: "0.05em", whiteSpace: "nowrap" }}>{exp.period}</div>
+                  </div>
+                  <ul style={{ paddingLeft: "1rem", marginTop: "1rem" }}>
+                    {exp.points.map(p => (
+                      <li key={p} style={{ color: "#888", fontSize: "0.9rem", lineHeight: 1.7, marginBottom: "0.4rem", listStyle: "none", display: "flex", gap: "10px" }}>
+                        <span style={{ color: "#39ff14", flexShrink: 0, marginTop: "2px" }}>▸</span> {p}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+
+        <div style={styles.divider} />
+
+        <section id={sectionIds[2]} className="section-inner" style={{ ...styles.section, maxWidth: "1200px" }}>
           <FadeIn>
             <div style={styles.sectionLabel}>{t.skills.sectionLabel}</div>
             <h2 style={styles.sectionTitle}>{t.skills.sectionTitle}</h2>
@@ -569,7 +600,7 @@ export default function Portfolio() {
 
         <div style={styles.divider} />
 
-        <section id={sectionIds[2]} className="section-inner" style={styles.section}>
+        <section id={sectionIds[3]} className="section-inner" style={styles.section}>
           <FadeIn>
             <div style={styles.sectionLabel}>{t.projects.sectionLabel}</div>
             <h2 style={styles.sectionTitle}>{t.projects.sectionTitle}</h2>
@@ -599,7 +630,7 @@ export default function Portfolio() {
                     <div style={{ display: "flex", gap: "0.75rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
                       {proj.galleryLink && (
                         <button
-                          onClick={() => scrollTo(t.navLinks[3])}
+                          onClick={() => scrollTo(t.navLinks[4])}
                           style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "#39ff14", background: "transparent", border: "1px solid #39ff14", padding: "6px 16px", borderRadius: "2px", cursor: "pointer", transition: "all 0.2s" }}
                         >
                           ▸ {lang === "en" ? "View Gallery" : "Galerie ansehen"}
@@ -636,37 +667,6 @@ export default function Portfolio() {
 
         {/* GALLERY */}
         <GallerySection t={t} lang={lang} styles={styles} />
-
-        <div style={styles.divider} />
-
-        <section id={sectionIds[4]} className="section-inner" style={styles.section}>
-          <FadeIn>
-            <div style={styles.sectionLabel}>{t.experience.sectionLabel}</div>
-            <h2 style={styles.sectionTitle}>{t.experience.sectionTitle}</h2>
-          </FadeIn>
-          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-            {EXPERIENCE[lang].map((exp, i) => (
-              <FadeIn key={exp.company} delay={i * 0.1}>
-                <div className="exp-card" style={{ borderLeft: "2px solid #222", paddingLeft: "2rem", transition: "border-left-color 0.3s" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                    <div>
-                      <div style={{ fontSize: "1.1rem", fontWeight: 700, color: "#f0f0f0" }}>{exp.role}</div>
-                      <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.8rem", color: "#39ff14", marginTop: "2px" }}>{exp.company} — {exp.location}</div>
-                    </div>
-                    <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#555", letterSpacing: "0.05em", whiteSpace: "nowrap" }}>{exp.period}</div>
-                  </div>
-                  <ul style={{ paddingLeft: "1rem", marginTop: "1rem" }}>
-                    {exp.points.map(p => (
-                      <li key={p} style={{ color: "#888", fontSize: "0.9rem", lineHeight: 1.7, marginBottom: "0.4rem", listStyle: "none", display: "flex", gap: "10px" }}>
-                        <span style={{ color: "#39ff14", flexShrink: 0, marginTop: "2px" }}>▸</span> {p}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </section>
 
         <div style={styles.divider} />
 
