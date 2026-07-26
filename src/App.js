@@ -2,30 +2,31 @@ import { useState, useEffect, useRef } from "react";
 
 const TRANSLATIONS = {
   en: {
-    navLinks: ["About", "Experience", "Skills", "Projects", "Gallery", "Contact"],
-    heroLabel: "ROBOTICS ENGINEER — BERLIN",
+    navLinks: ["About", "Experience", "Skills", "Certifications", "Projects", "Gallery", "Contact"],
+    heroLabel: "ROBOTICS & AUTOMATION ENGINEER — FORBACH, DE",
     heroTitle: "// Autonomous Systems & Embedded Engineering",
     heroTagline: "Building systems that move, sense, and decide.",
     heroCtas: { projects: "View Projects", contact: "Get In Touch" },
     about: {
       sectionLabel: "01 — ABOUT",
       sectionTitle: "Who I Am",
-      bio1: "I build systems that operate in the real world — drones that navigate autonomously, embedded pipelines that process sensor data in real time, and hardware-software integrations that bridge software commands to physical action.",
-      bio2: "Finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and working as a Mechatronic Engineer at Better Devices — building Python signal processing pipelines and embedded systems for IoT applications.",
+      bio1: "I'm a robotics and embedded-systems engineer with an M.Eng. focused on Industry 4.0 — automation, robotics, and 3D manufacturing. I build systems that operate in the real world: autonomous drones that navigate GPS waypoints, industrial KUKA robots with digital-twin simulation, and embedded pipelines that turn sensor data into real-time decisions.",
+      bio2: "Finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and now working as a Junior Software & Robotics Engineer at R3 Robotics — automating KUKA robotic cells for EV battery disassembly, building digital-twin simulations, and maintaining the frontend operator interface for robot-cell monitoring and control.",
       bio3: "I target roles in robotics, industrial automation, autonomous drone development, and defense technology — environments where the engineering actually needs to work.",
       facts: [
-        { label: "Location", value: "Berlin, Germany" },
-        { label: "Education", value: "M.Eng — SRH Berlin (Mar 2026)" },
-        { label: "Current Role", value: "Mechatronic Engineer @ Better Devices" },
-        { label: "Languages", value: "English (Fluent), German (B1)" },
-        { label: "Focus Areas", value: "Drones · Robotics · Defense Tech" },
+        { label: "Location", value: "Forbach, Germany" },
+        { label: "Education", value: "M.Eng — SRH Berlin (2024–2026)" },
+        { label: "Current Role", value: "Junior Software & Robotics Engineer @ R3 Robotics" },
+        { label: "Languages", value: "English (Fluent), German (A2–B1)" },
+        { label: "Focus Areas", value: "Robotics · Automation · Autonomous Drones" },
       ],
     },
     experience: { sectionLabel: "02 — EXPERIENCE", sectionTitle: "Where I've Worked" },
     skills: { sectionLabel: "03 — SKILLS", sectionTitle: "Technical Stack" },
-    projects: { sectionLabel: "04 — PROJECTS", sectionTitle: "What I've Built" },
+    certifications: { sectionLabel: "04 — CERTIFICATIONS", sectionTitle: "Certifications & Licenses" },
+    projects: { sectionLabel: "05 — PROJECTS", sectionTitle: "What I've Built" },
     gallery: {
-      sectionLabel: "05 — GALLERY",
+      sectionLabel: "06 — GALLERY",
       sectionTitle: "In Action",
       filterAll: "ALL",
       filterPhotos: "PHOTOS",
@@ -33,38 +34,39 @@ const TRANSLATIONS = {
       viewPhoto: "View Photo",
     },
     contact: {
-      sectionLabel: "06 — CONTACT",
+      sectionLabel: "07 — CONTACT",
       sectionTitle: "Let's Talk",
       bio: "Open to robotics, drone engineering, and defense tech roles in Germany. Reach out directly — no forms, no friction.",
       email: "Email Me",
     },
-    footer: "BERLIN, GERMANY",
+    footer: "FORBACH, GERMANY",
   },
   de: {
-    navLinks: ["Über mich", "Erfahrung", "Fähigkeiten", "Projekte", "Galerie", "Kontakt"],
-    heroLabel: "ROBOTIK-INGENIEUR — BERLIN",
+    navLinks: ["Über mich", "Erfahrung", "Fähigkeiten", "Zertifizierungen", "Projekte", "Galerie", "Kontakt"],
+    heroLabel: "ROBOTIK- & AUTOMATISIERUNGSINGENIEUR — FORBACH, DE",
     heroTitle: "// Autonome Systeme & Embedded Engineering",
     heroTagline: "Systeme bauen, die sich bewegen, wahrnehmen und entscheiden.",
     heroCtas: { projects: "Projekte ansehen", contact: "Kontakt aufnehmen" },
     about: {
       sectionLabel: "01 — ÜBER MICH",
       sectionTitle: "Wer ich bin",
-      bio1: "Ich entwickle Systeme, die in der realen Welt funktionieren — autonom navigierende Drohnen, eingebettete Pipelines zur Echtzeit-Sensordatenverarbeitung und Hardware-Software-Integrationen, die Softwarebefehle in physische Aktionen übersetzen.",
-      bio2: "Ich habe meinen Master in Sustainable Technology Management (Schwerpunkt Industrie 4.0) an der SRH Berlin abgeschlossen und arbeite als Mechatronik-Ingenieur bei Better Devices — dort entwickle ich Python-Signalverarbeitungspipelines und Embedded-Systeme für IoT-Anwendungen.",
+      bio1: "Ich bin Robotik- und Embedded-Systems-Ingenieur mit einem M.Eng. mit Schwerpunkt Industrie 4.0 — Automatisierung, Robotik und 3D-Fertigung. Ich entwickle Systeme, die in der realen Welt funktionieren: autonome Drohnen mit GPS-Wegpunktnavigation, industrielle KUKA-Roboter mit digitalem Zwilling und eingebettete Pipelines, die Sensordaten in Echtzeitentscheidungen verwandeln.",
+      bio2: "Ich habe meinen Master in Sustainable Technology Management (Schwerpunkt Industrie 4.0) an der SRH Berlin abgeschlossen und arbeite jetzt als Junior Software- & Robotik-Ingenieur bei R3 Robotics — dort automatisiere ich KUKA-Roboterzellen für die Demontage von EV-Batterien, baue digitale Zwilling-Simulationen und pflege die Frontend-Bedienoberfläche für die Überwachung und Steuerung der Roboterzellen.",
       bio3: "Ich suche Stellen in der Robotik, industriellen Automatisierung, autonomen Drohnenentwicklung und Verteidigungstechnologie — Umgebungen, in denen Engineering wirklich funktionieren muss.",
       facts: [
-        { label: "Standort", value: "Berlin, Deutschland" },
-        { label: "Ausbildung", value: "M.Eng — SRH Berlin (März 2026)" },
-        { label: "Aktuelle Stelle", value: "Mechatronik-Ingenieur @ Better Devices" },
-        { label: "Sprachen", value: "Englisch (fließend), Deutsch (B1)" },
-        { label: "Schwerpunkte", value: "Drohnen · Robotik · Verteidigungstechnik" },
+        { label: "Standort", value: "Forbach, Deutschland" },
+        { label: "Ausbildung", value: "M.Eng — SRH Berlin (2024–2026)" },
+        { label: "Aktuelle Stelle", value: "Junior Software- & Robotik-Ingenieur @ R3 Robotics" },
+        { label: "Sprachen", value: "Englisch (fließend), Deutsch (A2–B1)" },
+        { label: "Schwerpunkte", value: "Robotik · Automatisierung · Autonome Drohnen" },
       ],
     },
     experience: { sectionLabel: "02 — ERFAHRUNG", sectionTitle: "Wo ich gearbeitet habe" },
     skills: { sectionLabel: "03 — FÄHIGKEITEN", sectionTitle: "Technisches Stack" },
-    projects: { sectionLabel: "04 — PROJEKTE", sectionTitle: "Was ich gebaut habe" },
+    certifications: { sectionLabel: "04 — ZERTIFIZIERUNGEN", sectionTitle: "Zertifizierungen & Lizenzen" },
+    projects: { sectionLabel: "05 — PROJEKTE", sectionTitle: "Was ich gebaut habe" },
     gallery: {
-      sectionLabel: "05 — GALERIE",
+      sectionLabel: "06 — GALERIE",
       sectionTitle: "In Aktion",
       filterAll: "ALLE",
       filterPhotos: "FOTOS",
@@ -72,21 +74,28 @@ const TRANSLATIONS = {
       viewPhoto: "Foto ansehen",
     },
     contact: {
-      sectionLabel: "06 — KONTAKT",
+      sectionLabel: "07 — KONTAKT",
       sectionTitle: "Lass uns reden",
       bio: "Offen für Stellen in der Robotik, Drohnentechnik und Verteidigungstechnologie in Deutschland. Direkt kontaktieren — kein Formular, kein Aufwand.",
       email: "E-Mail senden",
     },
-    footer: "BERLIN, DEUTSCHLAND",
+    footer: "FORBACH, DEUTSCHLAND",
   },
 };
 
 const SKILLS = {
-  "Flight & Autonomy": ["ArduPilot", "MAVLink", "Pixhawk / CubePilot", "GPS Waypoint Nav", "Autonomous Flight Behaviours"],
-  "Embedded & Hardware": ["Embedded Systems", "PCB Design", "Sensor Integration", "Signal Processing", "Arduino / Raspberry Pi", "IoT / Hardware-Software Integration"],
-  "Software & CV": ["Python", "C / C++", "OpenCV", "Depth Sensing (OpenNI2)", "OpenAI API", "Speech Recognition"],
-  "Tools & Methods": ["Linux", "Git", "CAD Modelling", "Agile", "ROS2 (Humble)", "URDF / RViz", "NVIDIA Jetson", "Data Pipelines"],
+  "Flight & Autonomy": ["ArduPilot", "PX4", "MAVLink", "Pixhawk / CubePilot", "Autonomous Drones", "GPS Waypoint Nav"],
+  "Robotics & Motion": ["ROS2 (Jazzy)", "MoveIt", "RViz2", "Gazebo", "URDF", "Motion Planning", "KUKA Automation", "KUKA Sim / Digital Twin"],
+  "Embedded & Hardware": ["Embedded Systems & MCUs", "Sensor Integration", "Signal Processing", "I2C / CAN Bus / UART", "Arduino / ESP", "Raspberry Pi", "NVIDIA Jetson Orin", "Fusion 360 / CAD Prototyping"],
+  "Software & CV": ["Python", "C / C++", "OpenCV", "Computer Vision", "FastAPI", "MQTT", "Docker", "Ollama", "Speech Recognition (STT)"],
+  "Tools & Methods": ["Linux", "Git", "Agile", "IoT / HW-SW Integration"],
 };
+
+const CERTIFICATIONS = [
+  { name: "EU A1/A3 Drone Pilot License", issuer: "EASA" },
+  { name: "Siemens SMSCP Level 1", issuer: "Siemens" },
+  { name: "Siemens SMSCP Level 2", issuer: "Siemens" },
+];
 
 const PROJECTS = {
   en: [
@@ -198,11 +207,10 @@ const EXPERIENCE = {
       location: "Berlin, Germany",
       period: "Sep 2024 – May 2026",
       points: [
-        "Python scripts for electronic signal processing and embedded data pipelines",
-        "Hardware-software integration, sensor interfacing, real-time data handling",
-        "IoT debugging and testing",
+        "Python scripts for signal processing and embedded data-capture pipelines",
+        "Hardware-software integration: sensor interfacing and real-time data handling",
         "CAD design for hardware prototyping and system enclosures",
-        "Computer vision for new product development and feature implementation",
+        "PCB debugging and testing for IoT systems and troubleshooting",
       ],
     },
     {
@@ -236,11 +244,10 @@ const EXPERIENCE = {
       location: "Berlin, Deutschland",
       period: "Sep 2024 – Mai 2026",
       points: [
-        "Python-Skripte für elektronische Signalverarbeitung und eingebettete Datenpipelines",
-        "Hardware-Software-Integration, Sensoranbindung, Echtzeit-Datenverarbeitung",
-        "IoT-Debugging und -Testing",
+        "Python-Skripte für Signalverarbeitung und eingebettete Datenerfassungs-Pipelines",
+        "Hardware-Software-Integration: Sensoranbindung und Echtzeit-Datenverarbeitung",
         "CAD-Design für Hardware-Prototyping und Systemgehäuse",
-        "Computer Vision für neue Produktentwicklung und Funktionsimplementierung",
+        "PCB-Debugging und -Testing für IoT-Systeme; Fehlerbehebung bei Intercom- und Embedded-Kommunikation",
       ],
     },
     {
@@ -537,8 +544,8 @@ export default function Portfolio() {
             <div style={styles.heroTitle}>{t.heroTitle}</div>
             <p style={styles.heroTagline}>{typed}<span style={styles.cursor} /></p>
             <div style={styles.heroCtas}>
-              <button className="btn-primary" style={styles.btnPrimary} onClick={() => scrollTo(t.navLinks[3])}>{t.heroCtas.projects}</button>
-              <button className="btn-secondary" style={styles.btnSecondary} onClick={() => scrollTo(t.navLinks[5])}>{t.heroCtas.contact}</button>
+              <button className="btn-primary" style={styles.btnPrimary} onClick={() => scrollTo(t.navLinks[4])}>{t.heroCtas.projects}</button>
+              <button className="btn-secondary" style={styles.btnSecondary} onClick={() => scrollTo(t.navLinks[6])}>{t.heroCtas.contact}</button>
               <a href="https://github.com/siddhesh1008" target="_blank" rel="noopener noreferrer" style={{ ...styles.btnSecondary, textDecoration: "none", display: "inline-flex", alignItems: "center" }}>GitHub ↗</a>
             </div>
           </div>
@@ -626,6 +633,28 @@ export default function Portfolio() {
 
         <section id={sectionIds[3]} className="section-inner" style={styles.section}>
           <FadeIn>
+            <div style={styles.sectionLabel}>{t.certifications.sectionLabel}</div>
+            <h2 style={styles.sectionTitle}>{t.certifications.sectionTitle}</h2>
+          </FadeIn>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
+            {CERTIFICATIONS.map((cert, i) => (
+              <FadeIn key={cert.name} delay={i * 0.1}>
+                <div className="skill-group" style={{ border: "1px solid #1e1e1e", borderRadius: "4px", padding: "1.5rem", background: "#0d0d0d", transition: "border-color 0.3s", display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+                  <span style={{ color: "#39ff14", fontSize: "1rem", lineHeight: 1 }}>✓</span>
+                  <div>
+                    <div style={{ fontSize: "0.95rem", fontWeight: 700, color: "#f0f0f0", marginBottom: "4px" }}>{cert.name}</div>
+                    <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "#666", textTransform: "uppercase" }}>{cert.issuer}</div>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
+
+        <div style={styles.divider} />
+
+        <section id={sectionIds[4]} className="section-inner" style={styles.section}>
+          <FadeIn>
             <div style={styles.sectionLabel}>{t.projects.sectionLabel}</div>
             <h2 style={styles.sectionTitle}>{t.projects.sectionTitle}</h2>
           </FadeIn>
@@ -654,7 +683,7 @@ export default function Portfolio() {
                     <div style={{ display: "flex", gap: "0.75rem", marginTop: "1.5rem", flexWrap: "wrap" }}>
                       {proj.galleryLink && (
                         <button
-                          onClick={() => scrollTo(t.navLinks[4])}
+                          onClick={() => scrollTo(t.navLinks[5])}
                           style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.1em", color: "#39ff14", background: "transparent", border: "1px solid #39ff14", padding: "6px 16px", borderRadius: "2px", cursor: "pointer", transition: "all 0.2s" }}
                         >
                           ▸ {lang === "en" ? "View Gallery" : "Galerie ansehen"}
@@ -694,7 +723,7 @@ export default function Portfolio() {
 
         <div style={styles.divider} />
 
-        <section id={sectionIds[5]} className="section-inner" style={{ ...styles.section, textAlign: "center", maxWidth: "700px" }}>
+        <section id={sectionIds[6]} className="section-inner" style={{ ...styles.section, textAlign: "center", maxWidth: "700px" }}>
           <FadeIn>
             <div style={{ ...styles.sectionLabel, justifyContent: "center" }}>{t.contact.sectionLabel}</div>
             <h2 style={{ ...styles.sectionTitle, textAlign: "center" }}>{t.contact.sectionTitle}</h2>
