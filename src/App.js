@@ -11,12 +11,12 @@ const TRANSLATIONS = {
       sectionLabel: "01 — ABOUT",
       sectionTitle: "Who I Am",
       bio1: "I'm a robotics and embedded-systems engineer with an M.Eng. focused on Industry 4.0 — automation, robotics, and 3D manufacturing. I build systems that operate in the real world: autonomous drones that navigate GPS waypoints, industrial KUKA robots with digital-twin simulation, and embedded pipelines that turn sensor data into real-time decisions.",
-      bio2: "Finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and now working as a Junior Software & Robotics Engineer at R3 Robotics — automating KUKA robotic cells for EV battery disassembly, building digital-twin simulations, and maintaining the frontend operator interface for robot-cell monitoring and control.",
+      bio2: "Finished my Masters in Sustainable Technology Management (Industry 4.0 focus) at SRH Berlin, and now working as a Robotics Software Engineer at R3 Robotics — automating KUKA robotic cells for EV battery disassembly, building digital-twin simulations, and maintaining the frontend operator interface for robot-cell monitoring and control.",
       bio3: "I target roles in robotics, industrial automation, autonomous drone development, and defense technology — environments where the engineering actually needs to work.",
       facts: [
         { label: "Location", value: "Forbach, Germany" },
         { label: "Education", value: "M.Eng — SRH Berlin (2024–2026)" },
-        { label: "Current Role", value: "Junior Software & Robotics Engineer @ R3 Robotics" },
+        { label: "Current Role", value: "Robotics Software Engineer @ R3 Robotics" },
         { label: "Languages", value: "English (Fluent), German (A2–B1)" },
         { label: "Focus Areas", value: "Robotics · Automation · Autonomous Drones" },
       ],
@@ -51,12 +51,12 @@ const TRANSLATIONS = {
       sectionLabel: "01 — ÜBER MICH",
       sectionTitle: "Wer ich bin",
       bio1: "Ich bin Robotik- und Embedded-Systems-Ingenieur mit einem M.Eng. mit Schwerpunkt Industrie 4.0 — Automatisierung, Robotik und 3D-Fertigung. Ich entwickle Systeme, die in der realen Welt funktionieren: autonome Drohnen mit GPS-Wegpunktnavigation, industrielle KUKA-Roboter mit digitalem Zwilling und eingebettete Pipelines, die Sensordaten in Echtzeitentscheidungen verwandeln.",
-      bio2: "Ich habe meinen Master in Sustainable Technology Management (Schwerpunkt Industrie 4.0) an der SRH Berlin abgeschlossen und arbeite jetzt als Junior Software- & Robotik-Ingenieur bei R3 Robotics — dort automatisiere ich KUKA-Roboterzellen für die Demontage von EV-Batterien, baue digitale Zwilling-Simulationen und pflege die Frontend-Bedienoberfläche für die Überwachung und Steuerung der Roboterzellen.",
+      bio2: "Ich habe meinen Master in Sustainable Technology Management (Schwerpunkt Industrie 4.0) an der SRH Berlin abgeschlossen und arbeite jetzt als Robotics Software Engineer bei R3 Robotics — dort automatisiere ich KUKA-Roboterzellen für die Demontage von EV-Batterien, baue digitale Zwilling-Simulationen und pflege die Frontend-Bedienoberfläche für die Überwachung und Steuerung der Roboterzellen.",
       bio3: "Ich suche Stellen in der Robotik, industriellen Automatisierung, autonomen Drohnenentwicklung und Verteidigungstechnologie — Umgebungen, in denen Engineering wirklich funktionieren muss.",
       facts: [
         { label: "Standort", value: "Forbach, Deutschland" },
         { label: "Ausbildung", value: "M.Eng — SRH Berlin (2024–2026)" },
-        { label: "Aktuelle Stelle", value: "Junior Software- & Robotik-Ingenieur @ R3 Robotics" },
+        { label: "Aktuelle Stelle", value: "Robotik-Software-Ingenieur @ R3 Robotics" },
         { label: "Sprachen", value: "Englisch (fließend), Deutsch (A2–B1)" },
         { label: "Schwerpunkte", value: "Robotik · Automatisierung · Autonome Drohnen" },
       ],
@@ -228,7 +228,7 @@ const GALLERY = [
 const EXPERIENCE = {
   en: [
     {
-      role: "Junior Software & Robotics Engineer",
+      role: "Robotics Software Engineer",
       company: "R3 Robotics",
       location: "Kuppenheim, Germany",
       period: "Jun 2026 – Present",
@@ -265,7 +265,7 @@ const EXPERIENCE = {
   ],
   de: [
     {
-      role: "Junior Software- & Robotik-Ingenieur",
+      role: "Robotik-Software-Ingenieur",
       company: "R3 Robotics",
       location: "Kuppenheim, Deutschland",
       period: "Jun 2026 – heute",
