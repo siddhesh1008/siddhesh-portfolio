@@ -139,12 +139,12 @@ const PROJECTS = {
     },
     {
       id: "arm-sim",
-      title: "Robotic Arm Simulation (Armold)",
+      title: "Armold (Robotic Arm by Sweep Dynamics)",
       status: "IN PROGRESS",
       tags: ["ROS2 (Jazzy)", "RViz2", "MoveIt2", "Gazebo", "URDF / Xacro", "Linux"],
       description: "A ROS2 Jazzy simulation of a 6-joint robotic arm, built across two packages — arm_description for URDF/Xacro modeling and arm_bringup for launch and visualization. Includes an automated setup script that installs dependencies, builds the workspace, and launches RViz2 with interactive joint sliders.",
       highlights: ["3 of 6 joints implemented: waist, shoulder, elbow", "Automated setup & build pipeline (run_sim.sh)", "Wrist joints (J5/J6) and gripper in progress"],
-      github: "https://github.com/siddhesh1008/robotic_arm_sim",
+      github: "https://github.com/siddhesh1008/armold",
     },
     {
       id: "crcs",
