@@ -97,8 +97,47 @@ const CERTIFICATIONS = [
   { name: "Siemens SMSCP Level 2", issuer: "Siemens" },
 ];
 
+const SKY_RADAR_IMAGES = {
+  en: [
+    { src: "/images/sky-radar/radar.png", caption: "Live radar with plane details card" },
+    { src: "/images/sky-radar/alerts.png", caption: "Military, incoming and emergency alerts" },
+    { src: "/images/sky-radar/shapes.png", caption: "Aircraft shapes by type" },
+    { src: "/images/sky-radar/weather.png", caption: "Live weather and spotting forecast" },
+    { src: "/images/sky-radar/settings.png", caption: "On-screen settings, traffic chart and replay" },
+    { src: "/images/sky-radar/themes.png", caption: "Colour themes incl. red night mode" },
+    { src: "/images/sky-radar/mount-front.png", caption: "3D-printed enclosure, front" },
+    { src: "/images/sky-radar/mount-back.png", caption: "Enclosure back with IKEA Skådis hooks" },
+  ],
+  de: [
+    { src: "/images/sky-radar/radar.png", caption: "Live-Radar mit Flugzeug-Detailkarte" },
+    { src: "/images/sky-radar/alerts.png", caption: "Militär-, Vorwarn- und Notfallalarme" },
+    { src: "/images/sky-radar/shapes.png", caption: "Flugzeugsymbole nach Typ" },
+    { src: "/images/sky-radar/weather.png", caption: "Live-Wetter und Sichtbarkeitsprognose" },
+    { src: "/images/sky-radar/settings.png", caption: "Einstellungen, Verkehrsdiagramm und Replay" },
+    { src: "/images/sky-radar/themes.png", caption: "Farbthemen inkl. rotem Nachtmodus" },
+    { src: "/images/sky-radar/mount-front.png", caption: "3D-gedrucktes Gehäuse, Vorderseite" },
+    { src: "/images/sky-radar/mount-back.png", caption: "Gehäuserückseite mit IKEA-Skådis-Haken" },
+  ],
+};
+
 const PROJECTS = {
   en: [
+    {
+      id: "sky-radar",
+      title: "Sky Radar — Live Aircraft Radar",
+      status: "COMPLETE",
+      tags: ["Python", "Raspberry Pi 5", "ADS-B", "RTL-SDR", "REST APIs", "Touch UI", "Fusion 360", "3D Printing"],
+      description: "A live aircraft radar for a 5\" round 1080×1080 touch display on a Raspberry Pi 5. It shows every plane around you on a dark OpenStreetMap map, highlights military aircraft, and raises a red screen alert when a military jet enters your zone — telling you which way and how high to look. Pulls live ADS-B data from adsb.fi with automatic failover to adsb.lol, or from your own RTL-SDR receiver. Housed in a custom 3D-printed enclosure designed in Fusion 360 that hangs on an IKEA Skådis pegboard.",
+      highlights: [
+        "Early-warning alerts: predicts paths 3 min ahead (\"MILITARY INCOMING — WEST IN 1:10\")",
+        "Detects military formations, orbiting tankers/AWACS and emergency squawks",
+        "\"Can I see it?\" rating from distance, height, clouds, sun and time of day",
+        "Sightings log, airport board, 30-min replay, offline map, crash watchdog",
+        "Custom Fusion 360 enclosure for display + Pi 5",
+      ],
+      github: "https://github.com/siddhesh1008/sky-radar",
+      images: SKY_RADAR_IMAGES.en,
+    },
     {
       id: "drone",
       title: "Autonomous Drone Platform",
@@ -157,6 +196,22 @@ const PROJECTS = {
     },
   ],
   de: [
+    {
+      id: "sky-radar",
+      title: "Sky Radar — Live-Flugzeugradar",
+      status: "ABGESCHLOSSEN",
+      tags: ["Python", "Raspberry Pi 5", "ADS-B", "RTL-SDR", "REST-APIs", "Touch-UI", "Fusion 360", "3D-Druck"],
+      description: "Ein Live-Flugzeugradar für ein rundes 5\"-Touchdisplay (1080×1080) an einem Raspberry Pi 5. Es zeigt alle Flugzeuge in der Umgebung auf einer dunklen OpenStreetMap-Karte, hebt Militärflugzeuge hervor und löst einen roten Bildschirmalarm aus, sobald ein Militärjet in die eigene Zone kommt — inklusive Blickrichtung und Höhenwinkel. Live-ADS-B-Daten kommen von adsb.fi mit automatischem Failover auf adsb.lol oder von einem eigenen RTL-SDR-Empfänger. Untergebracht in einem selbst in Fusion 360 konstruierten, 3D-gedruckten Gehäuse für die IKEA-Skådis-Lochwand.",
+      highlights: [
+        "Frühwarnung: berechnet Flugbahnen 3 Min. voraus (\"MILITARY INCOMING — WEST IN 1:10\")",
+        "Erkennt Militärformationen, kreisende Tanker/AWACS und Notfall-Squawks",
+        "\"Kann ich es sehen?\"-Bewertung aus Entfernung, Höhe, Wolken, Sonne und Tageszeit",
+        "Sichtungslog, Flughafentafel, 30-Min.-Replay, Offline-Karte, Crash-Watchdog",
+        "Eigenes Fusion-360-Gehäuse für Display + Pi 5",
+      ],
+      github: "https://github.com/siddhesh1008/sky-radar",
+      images: SKY_RADAR_IMAGES.de,
+    },
     {
       id: "drone",
       title: "Autonome Drohnenplattform",
@@ -223,6 +278,8 @@ const GALLERY = [
   { id: "g4", type: "video", src: "https://www.youtube.com/embed/edYdhTGV3Os", caption: "Autonomous Drone — Short Clip 2" },
   { id: "g5", type: "image", src: "/images/IMG_5376.jpg", caption: "Autonomous Drone — Build" },
   { id: "g6", type: "image", src: "/images/IMG_6183.jpg", caption: "Autonomous Drone — Hardware" },
+  { id: "g7", type: "image", src: "/images/sky-radar/radar.png", caption: "Sky Radar — Live Aircraft Radar" },
+  { id: "g8", type: "image", src: "/images/sky-radar/alerts.png", caption: "Sky Radar — Military & Emergency Alerts" },
 ];
 
 const EXPERIENCE = {
@@ -352,6 +409,62 @@ function LangToggle({ lang, setLang }) {
         DE
       </button>
     </div>
+  );
+}
+
+function ProjectImages({ images }) {
+  const [index, setIndex] = useState(null);
+  const open = index !== null ? images[index] : null;
+
+  useEffect(() => {
+    if (index === null) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setIndex(null);
+      if (e.key === "ArrowRight") setIndex(i => (i + 1) % images.length);
+      if (e.key === "ArrowLeft") setIndex(i => (i - 1 + images.length) % images.length);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [index, images.length]);
+
+  const navBtn = { background: "none", border: "1px solid #333", color: "#39ff14", fontFamily: "'Space Mono', monospace", fontSize: "0.75rem", padding: "6px 14px", cursor: "pointer", letterSpacing: "0.1em", borderRadius: "2px" };
+
+  return (
+    <>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: "0.75rem", marginTop: "1.5rem" }}>
+        {images.map((img, i) => (
+          <div key={img.src} onClick={() => setIndex(i)} className="gallery-img-card" style={{ borderRadius: "4px", overflow: "hidden", border: "1px solid #1e1e1e", background: "#0a0a0a", cursor: "pointer", transition: "all 0.3s" }}>
+            <div style={{ position: "relative", paddingTop: "75%" }}>
+              <img src={img.src} alt={img.caption} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <div className="gallery-overlay" style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0)", display: "flex", alignItems: "center", justifyContent: "center", transition: "background 0.3s" }}>
+                <span className="gallery-zoom" style={{ color: "#39ff14", fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.1em", opacity: 0 }}>⊕ VIEW</span>
+              </div>
+            </div>
+            <div style={{ padding: "0.5rem 0.6rem", fontFamily: "'Space Mono', monospace", fontSize: "0.58rem", color: "#555", letterSpacing: "0.06em", lineHeight: 1.4 }}>
+              {img.caption.toUpperCase()}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {open && (
+        <div onClick={() => setIndex(null)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.92)", zIndex: 999, display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem", cursor: "pointer" }}>
+          <div style={{ position: "relative", maxWidth: "90vw", maxHeight: "90vh" }} onClick={e => e.stopPropagation()}>
+            <img src={open.src} alt={open.caption} style={{ maxWidth: "90vw", maxHeight: "78vh", objectFit: "contain", borderRadius: "4px", display: "block", margin: "0 auto" }} />
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", marginTop: "1rem" }}>
+              <button style={navBtn} onClick={() => setIndex(i => (i - 1 + images.length) % images.length)}>◂</button>
+              <div style={{ textAlign: "center", fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", color: "#666", letterSpacing: "0.1em" }}>
+                {open.caption.toUpperCase()} · {index + 1}/{images.length}
+              </div>
+              <button style={navBtn} onClick={() => setIndex(i => (i + 1) % images.length)}>▸</button>
+            </div>
+            <button onClick={() => setIndex(null)} style={{ position: "absolute", top: "-2rem", right: 0, background: "none", border: "none", color: "#39ff14", fontFamily: "'Space Mono', monospace", fontSize: "0.8rem", cursor: "pointer", letterSpacing: "0.1em" }}>
+              CLOSE ✕
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -737,6 +850,7 @@ export default function Portfolio() {
                       )}
                     </div>
                   )}
+                  {proj.images && <ProjectImages images={proj.images} />}
                   {proj.youtube && (
                     <div style={{ marginTop: "1.5rem", borderRadius: "4px", overflow: "hidden", border: "1px solid #1e1e1e" }}>
                       <iframe
