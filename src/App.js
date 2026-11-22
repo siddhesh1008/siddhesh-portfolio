@@ -84,8 +84,9 @@ const TRANSLATIONS = {
 };
 
 const SKILLS = {
+  "Industrial Robotics & HMI": ["KUKA Robot Programming (KRL)", "KUKA.Sim / Digital Twin", "Robot-Cell Automation", "Machine Vision", "HMI / Operator UI Development", "EV Battery Disassembly"],
   "Flight & Autonomy": ["ArduPilot", "PX4", "MAVLink", "Pixhawk / CubePilot", "Autonomous Drones", "GPS Waypoint Nav"],
-  "Robotics & Motion": ["ROS2 (Jazzy)", "MoveIt", "RViz2", "Gazebo", "URDF", "Motion Planning", "KUKA Automation", "KUKA Sim / Digital Twin"],
+  "Robotics & Motion": ["ROS2 (Jazzy)", "MoveIt", "RViz2", "Gazebo", "URDF", "Motion Planning"],
   "Embedded & Hardware": ["Embedded Systems & MCUs", "Sensor Integration", "Signal Processing", "I2C / CAN Bus / UART", "Arduino / ESP", "Raspberry Pi", "NVIDIA Jetson Orin", "Fusion 360 / CAD Prototyping"],
   "Software & CV": ["Python", "C / C++", "OpenCV", "Computer Vision", "FastAPI", "MQTT", "Docker", "Ollama", "Speech Recognition (STT)"],
   "Tools & Methods": ["Linux", "Git", "Agile", "IoT / HW-SW Integration"],
@@ -293,7 +294,8 @@ const EXPERIENCE = {
         "KUKA robot automation and software scripting for EV battery disassembly",
         "Build and maintain automation scripts for industrial robotic cells",
         "Contribute to digital-twin simulations for KUKA robots",
-        "Maintain the frontend operator interface for robot-cell monitoring and control",
+        "Machine-vision integration for part detection and robot guidance in the cell",
+        "Maintain the frontend operator interface (HMI) for robot-cell monitoring and control",
       ],
     },
     {
@@ -330,7 +332,8 @@ const EXPERIENCE = {
         "KUKA-Roboterautomatisierung und Softwareskripting für die Demontage von EV-Batterien",
         "Entwicklung und Wartung von Automatisierungsskripten für industrielle Roboterzellen",
         "Mitwirkung an digitalen Zwilling-Simulationen für KUKA-Roboter",
-        "Wartung der Frontend-Bedienoberfläche für die Überwachung und Steuerung von Roboterzellen",
+        "Integration von Machine Vision zur Teileerkennung und Roboterführung in der Zelle",
+        "Wartung der Frontend-Bedienoberfläche (HMI) für die Überwachung und Steuerung von Roboterzellen",
       ],
     },
     {
