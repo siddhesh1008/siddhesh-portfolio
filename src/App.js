@@ -85,11 +85,11 @@ const TRANSLATIONS = {
 
 const SKILLS = {
   "Industrial Robotics & HMI": ["KUKA Robot Programming (KRL)", "KUKA.Sim / Digital Twin", "Robot-Cell Automation", "Machine Vision", "HMI / Operator UI Development", "EV Battery Disassembly"],
-  "Flight & Autonomy": ["ArduPilot", "PX4", "MAVLink", "Pixhawk / CubePilot", "Autonomous Drones", "GPS Waypoint Nav"],
   "Robotics & Motion": ["ROS2 (Jazzy)", "MoveIt", "RViz2", "Gazebo", "URDF", "Motion Planning"],
-  "Embedded & Hardware": ["Embedded Systems & MCUs", "Sensor Integration", "Signal Processing", "I2C / CAN Bus / UART", "Arduino / ESP", "Raspberry Pi", "NVIDIA Jetson Orin", "Fusion 360 / CAD Prototyping"],
-  "Software & CV": ["Python", "C / C++", "OpenCV", "Computer Vision", "FastAPI", "MQTT", "Docker", "Ollama", "Speech Recognition (STT)"],
-  "Tools & Methods": ["Linux", "Git", "Agile", "IoT / HW-SW Integration"],
+  "Flight & Autonomy": ["ArduPilot", "PX4", "MAVLink", "Pixhawk / CubePilot", "Autonomous Drones", "GPS Waypoint Nav"],
+  "Embedded & Hardware": ["Embedded Systems & MCUs", "Sensor Integration", "Signal Processing", "I2C / CAN Bus / UART", "Arduino / ESP", "Raspberry Pi", "NVIDIA Jetson Orin"],
+  "Software & AI": ["Python", "C / C++", "OpenCV", "Computer Vision", "FastAPI", "Ollama (Local LLMs)", "Speech Recognition (STT)"],
+  "Tools & Methods": ["Linux", "Git", "Docker", "MQTT", "Fusion 360 / CAD", "Agile", "IoT / HW-SW Integration"],
 };
 
 const CERTIFICATIONS = [
@@ -373,10 +373,10 @@ function useInView(threshold = 0.15) {
   return [ref, visible];
 }
 
-function FadeIn({ children, delay = 0, className = "" }) {
+function FadeIn({ children, delay = 0, className = "", style = {} }) {
   const [ref, visible] = useInView();
   return (
-    <div ref={ref} className={className} style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(28px)", transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s` }}>
+    <div ref={ref} className={className} style={{ ...style, opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(28px)", transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s` }}>
       {children}
     </div>
   );
@@ -651,6 +651,12 @@ export default function Portfolio() {
         .gallery-img-card:hover { border-color: #39ff14 !important; }
         .gallery-img-card:hover .gallery-overlay { background: rgba(0,0,0,0.5) !important; }
         .gallery-img-card:hover .gallery-zoom { opacity: 1 !important; }
+        @media (max-width: 1024px) {
+          .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 640px) {
+          .skills-grid { grid-template-columns: 1fr !important; }
+        }
         @media (max-width: 768px) {
           .nav-links-desktop { display: none !important; }
           .nav-mobile-menu { display: flex !important; }
@@ -772,11 +778,14 @@ export default function Portfolio() {
             <div style={styles.sectionLabel}>{t.skills.sectionLabel}</div>
             <h2 style={styles.sectionTitle}>{t.skills.sectionTitle}</h2>
           </FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
+          <div className="skills-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem", alignItems: "stretch" }}>
             {Object.entries(SKILLS).map(([group, items], i) => (
-              <FadeIn key={group} delay={i * 0.1}>
-                <div className="skill-group" style={{ border: "1px solid #1e1e1e", borderRadius: "4px", padding: "1.5rem", background: "#0d0d0d", transition: "border-color 0.3s" }}>
-                  <div style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.15em", color: "#39ff14", marginBottom: "1rem", textTransform: "uppercase" }}>{group}</div>
+              <FadeIn key={group} delay={(i % 3) * 0.1} style={{ height: "100%" }}>
+                <div className="skill-group" style={{ height: "100%", border: "1px solid #1e1e1e", borderRadius: "4px", padding: "1.5rem", background: "#0d0d0d", transition: "border-color 0.3s" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "0.75rem", borderBottom: "1px solid #1a1a1a", paddingBottom: "0.75rem", marginBottom: "1rem" }}>
+                    <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.15em", color: "#39ff14", textTransform: "uppercase" }}>{group}</span>
+                    <span style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.65rem", color: "#444" }}>{String(i + 1).padStart(2, "0")}</span>
+                  </div>
                   <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                     {items.map(skill => <Tag key={skill} label={skill} />)}
                   </div>
